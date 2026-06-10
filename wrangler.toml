@@ -1,0 +1,9 @@
+# Cloudflare deploy config. The site is a Next.js static export (see
+# next.config.mjs `output: "export"`), so deploy the generated `out/` folder
+# as static assets rather than as a server-rendered Next.js app.
+name = "portfolio"
+compatibility_date = "2025-03-01"
+
+[assets]
+directory = "./out"
+not_found_handling = "404-page"
