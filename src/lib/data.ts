@@ -156,6 +156,8 @@ export type Metric = { label: string; value: string };
 
 export type BomRow = { item: string; qty: string; desc: string };
 
+export type SupplementarySheet = { title: string; file: string; note?: string };
+
 export type Project = {
   slug: string;
   kind: "case" | "drawing";
@@ -181,6 +183,8 @@ export type Project = {
   related?: { slug: string; label: string };
   // Case-study supplementary CAD drawing deliverables (links to drawing entries)
   relatedDrawings?: { slug: string; label: string }[];
+  // Case-study raw drawing sheets (PDF only, no dedicated page)
+  supplementarySheets?: SupplementarySheet[];
 };
 
 export const projects: Project[] = [
@@ -299,6 +303,14 @@ export const projects: Project[] = [
     relatedDrawings: [
       { slug: "end-effector-drawing", label: "End Effector Mount" },
       { slug: "table-components-drawing", label: "Inspection Table Components" },
+    ],
+    supplementarySheets: [
+      { title: "Final Design Assembly", file: "/drawings/final-design-assembly.pdf", note: "Full inspection cell" },
+      { title: "Main Mount", file: "/drawings/main-mount.pdf", note: "T-slot arm mount frame" },
+      { title: "Support Mount", file: "/drawings/support-mount.pdf", note: "Secondary frame support" },
+      { title: "Robotic Arm Mounting Plate", file: "/drawings/robotic-arm-mounting-plate.pdf", note: "A36 steel top plate" },
+      { title: "Table Assembly", file: "/drawings/table-assembly.pdf", note: "Adjustable centering table" },
+      { title: "Table Top", file: "/drawings/table-top.pdf", note: "76 in Al 6061-T6 top" },
     ],
   },
 

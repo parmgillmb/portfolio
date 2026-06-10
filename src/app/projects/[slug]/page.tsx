@@ -8,6 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { PdfViewer } from "@/components/PdfViewer";
 import { DrawingCover } from "@/components/DrawingCover";
 import { ProjectCard } from "@/components/ProjectCard";
+import { DrawingSheetCard } from "@/components/DrawingSheetCard";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -206,21 +207,39 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       )}
 
       {/* Supplementary CAD drawings (case studies with released drawings) */}
-      {supplementaryDrawings.length > 0 && (
+      {(supplementaryDrawings.length > 0 || (project.supplementarySheets?.length ?? 0) > 0) && (
         <section className="container-page mt-20">
           <Reveal>
             <h2 className="section-title">Supplementary Drawings</h2>
             <p className="mt-2 max-w-3xl text-muted">
-              Released CAD drawing deliverables produced for this project. Each opens to the full sheet with title block, views, and bill of materials.
+              Released CAD drawing deliverables produced for this project. The documented deliverables open to a full page with title block, views, and bill of materials; the assembly and part sheets open directly as PDF drawings.
             </p>
           </Reveal>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {supplementaryDrawings.map((d, i) => (
-              <Reveal key={d.slug} delay={i * 80} as="div">
-                <ProjectCard project={d} />
+
+          {supplementaryDrawings.length > 0 && (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {supplementaryDrawings.map((d, i) => (
+                <Reveal key={d.slug} delay={i * 80} as="div">
+                  <ProjectCard project={d} />
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          {project.supplementarySheets && project.supplementarySheets.length > 0 && (
+            <>
+              <Reveal>
+                <h3 className="mt-12 text-xs font-bold uppercase tracking-wide text-muted">Assembly &amp; Part Sheets</h3>
               </Reveal>
-            ))}
-          </div>
+              <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {project.supplementarySheets.map((sheet, i) => (
+                  <Reveal key={sheet.file} delay={i * 60} as="div">
+                    <DrawingSheetCard sheet={sheet} />
+                  </Reveal>
+                ))}
+              </div>
+            </>
+          )}
         </section>
       )}
 
