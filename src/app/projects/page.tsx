@@ -12,6 +12,7 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHeader
+        icon="compass"
         eyebrow="Projects"
         title="Engineering case studies."
         description="Case studies are documented end to end: problem, objectives, design process, analysis, results, and key learnings. Drawing entries include the engineering intent, specifications, and the live drawing sheet. Filter by discipline or search by tool."

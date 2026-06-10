@@ -2,12 +2,16 @@ import Link from "next/link";
 import { profile, featuredProjects, experience, skillGroups } from "@/lib/data";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
+import { HeroBlueprint } from "@/components/HeroBlueprint";
+import { TechDivider } from "@/components/TechDivider";
+import { SectionIcon } from "@/components/SectionIcon";
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
+        <HeroBlueprint />
         <div className="container-page pb-12 pt-16 sm:pt-24">
           <div className="max-w-3xl animate-fade-up">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted">
@@ -48,11 +52,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TechDivider className="mt-6" />
+
       {/* Featured projects */}
       <section className="container-page mt-12">
         <Reveal className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-accent">Selected Work</p>
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
+              <SectionIcon name="compass" size={17} />
+              Selected Work
+            </p>
             <h2 className="section-title mt-2">Featured Projects</h2>
           </div>
           <Link href="/projects" className="hidden shrink-0 text-sm font-semibold text-accent hover:underline sm:inline">
@@ -73,10 +82,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TechDivider className="mt-20" />
+
       {/* Experience snapshot */}
-      <section className="container-page mt-24">
+      <section className="container-page mt-12">
         <Reveal>
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">Where I&apos;ve Worked</p>
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
+            <SectionIcon name="hardhat" size={17} />
+            Where I&apos;ve Worked
+          </p>
           <h2 className="section-title mt-2">Industry Experience</h2>
         </Reveal>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -100,10 +114,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TechDivider className="mt-20" />
+
       {/* Skills strip */}
-      <section className="container-page mt-24">
+      <section className="container-page mt-12">
         <Reveal>
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">Capabilities</p>
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
+            <SectionIcon name="wrench" size={17} />
+            Capabilities
+          </p>
           <h2 className="section-title mt-2">Core Engineering Toolkit</h2>
         </Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -121,8 +140,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <TechDivider className="mt-20" />
+
       {/* CTA */}
-      <section className="container-page mt-24">
+      <section className="container-page mt-12">
         <Reveal className="card relative overflow-hidden p-8 sm:p-12 text-center">
           <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/10 blur-2xl" />
           <h2 className="section-title">Let&apos;s build something well-engineered.</h2>

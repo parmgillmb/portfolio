@@ -14,6 +14,7 @@ export default function SkillsPage() {
   return (
     <>
       <PageHeader
+        icon="wrench"
         eyebrow="Skills"
         title="The toolkit behind the work."
         description="Grouped by discipline. Every tool listed is backed by coursework, projects, or two years of industry use."

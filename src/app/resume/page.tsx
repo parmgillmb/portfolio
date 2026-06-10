@@ -8,6 +8,7 @@ import {
   projects,
 } from "@/lib/data";
 import { PrintButton } from "@/components/PrintButton";
+import { SectionIcon } from "@/components/SectionIcon";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -20,7 +21,10 @@ export default function ResumePage() {
       {/* Action bar */}
       <div className="no-print mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-widest text-accent">Resume</p>
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
+            <SectionIcon name="document" size={17} />
+            Resume
+          </p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight">Interactive Resume</h1>
           <p className="mt-2 max-w-xl text-sm text-muted">
             Use the button to save a clean PDF copy. Everything below mirrors my full resume.

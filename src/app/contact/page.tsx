@@ -12,6 +12,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
+        icon="mail"
         eyebrow="Contact"
         title="Let's talk."
         description={profile.availability + ". Send a message and I'll get back to you quickly."}

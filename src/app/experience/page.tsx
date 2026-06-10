@@ -12,6 +12,7 @@ export default function ExperiencePage() {
   return (
     <>
       <PageHeader
+        icon="hardhat"
         eyebrow="Experience"
         title="Two years of hands-on engineering."
         description="Design and quality engineering internships at Manitoba Hydro, where I moved from CAD and FEA to field commissioning, and from QC inspection to building AI-powered automation."

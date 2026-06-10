@@ -32,6 +32,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
+        icon="caliper"
         eyebrow="About"
         title="A versatile engineer across design, analysis, and the field."
         description="My work moves between CAD, simulation, manufacturing, controls, and on-site installation. The range is the point: I adapt to the tool and the problem in front of me."
