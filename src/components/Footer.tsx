@@ -4,6 +4,7 @@ import { profile } from "@/lib/data";
 export function Footer() {
   return (
     <footer className="no-print mt-24 border-t border-border bg-surface">
+      <div aria-hidden="true" className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
       <div className="container-page flex flex-col items-center justify-between gap-6 py-10 sm:flex-row">
         <div className="text-center sm:text-left">
           <p className="font-semibold">{profile.name}</p>

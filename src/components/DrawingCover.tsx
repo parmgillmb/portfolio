@@ -15,8 +15,12 @@ export function DrawingCover({ project, compact = false }: { project: Project; c
           backgroundSize: "22px 22px",
         }}
       />
-      {/* Drawing-frame border */}
+      {/* Drawing-frame border with corner ticks */}
       <div className="absolute inset-3 rounded-md border border-border" />
+      <span aria-hidden="true" className="absolute left-3 top-3 h-2.5 w-2.5 border-l border-t border-accent/60" />
+      <span aria-hidden="true" className="absolute right-3 top-3 h-2.5 w-2.5 border-r border-t border-accent/60" />
+      <span aria-hidden="true" className="absolute bottom-3 left-3 h-2.5 w-2.5 border-b border-l border-accent/60" />
+      <span aria-hidden="true" className="absolute bottom-3 right-3 h-2.5 w-2.5 border-b border-r border-accent/60" />
       <div className="absolute inset-0 flex flex-col justify-between p-5">
         <div className="flex items-center gap-2 text-accent">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

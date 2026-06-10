@@ -1,6 +1,8 @@
+import { HeroSchematic } from "./HeroSchematic";
+
 // Blueprint-style decor for the home hero: a denser local grid with major
-// lines and registration crosshairs. Pure decoration, hidden from assistive
-// tech, fully behind content.
+// lines, registration crosshairs, and a dimensioned flange schematic that
+// draws in like CAD linework. Pure decoration, hidden from assistive tech.
 export function HeroBlueprint() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -38,6 +40,14 @@ export function HeroBlueprint() {
           <circle cx="11" cy="11" r="5" />
         </svg>
       ))}
+
+      {/* Dimensioned flange schematic, right side */}
+      <div className="absolute -top-2 right-[2%] hidden text-accent/25 lg:block dark:text-accent/20">
+        <HeroSchematic />
+      </div>
+      <div className="absolute -right-16 -top-6 hidden text-accent/20 md:block lg:hidden">
+        <HeroSchematic className="h-[360px] w-[360px]" />
+      </div>
 
       {/* Soft accent wash */}
       <div className="absolute -right-[10%] -top-[15%] h-[480px] w-[480px] rounded-full bg-accent/[0.07] blur-3xl" />

@@ -15,7 +15,10 @@ export default function HomePage() {
         <div className="container-page pb-12 pt-16 sm:pt-24">
           <div className="max-w-3xl animate-fade-up">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted">
-              <span className="h-2 w-2 rounded-full bg-accent" />
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
               {profile.availability}
             </p>
             <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
@@ -42,7 +45,7 @@ export default function HomePage() {
                 { v: "4", l: "Engineering projects" },
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
               ].map((s) => (
-                <div key={s.l}>
+                <div key={s.l} className="border-l-2 border-accent/30 pl-3">
                   <dt className="text-2xl font-bold tracking-tight sm:text-3xl">{s.v}</dt>
                   <dd className="mt-1 text-sm text-muted">{s.l}</dd>
                 </div>
@@ -146,6 +149,10 @@ export default function HomePage() {
       <section className="container-page mt-12">
         <Reveal className="card relative overflow-hidden p-8 sm:p-12 text-center">
           <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/10 blur-2xl" />
+          <span aria-hidden="true" className="pointer-events-none absolute left-3 top-3 h-4 w-4 border-l-2 border-t-2 border-accent/40" />
+          <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 h-4 w-4 border-r-2 border-t-2 border-accent/40" />
+          <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 h-4 w-4 border-b-2 border-l-2 border-accent/40" />
+          <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 border-b-2 border-r-2 border-accent/40" />
           <h2 className="section-title">Let&apos;s build something well-engineered.</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted">
             I&apos;m looking for mechanical design, product development, manufacturing, and robotics opportunities. I&apos;d love to talk.
