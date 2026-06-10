@@ -87,13 +87,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
       {/* Cover */}
       <div className="container-page mt-10">
-        <div className="card relative aspect-[16/9] w-full overflow-hidden bg-surface-2">
-          {isDrawing ? (
+        {isDrawing ? (
+          <div className="card relative aspect-[4/3] w-full max-w-sm overflow-hidden bg-surface-2">
             <DrawingCover project={project} />
-          ) : (
+          </div>
+        ) : (
+          <div className="card relative aspect-[16/9] w-full overflow-hidden bg-surface-2">
             <Image src={project.cover} alt={project.title} fill priority sizes="100vw" className="object-contain p-3" />
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Metrics / specs */}

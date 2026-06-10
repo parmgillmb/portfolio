@@ -53,7 +53,7 @@ export default function AboutPage() {
 
           {/* Versatility, evidence-based */}
           <Reveal className="mt-12">
-            <h2 className="section-title">Versatility, by Evidence</h2>
+            <h2 className="section-title">Versatility and Adaptability</h2>
             <ul className="mt-6 space-y-3">
               {versatilityPoints.map((point) => (
                 <li key={point} className="card flex gap-3 p-4">

@@ -100,35 +100,21 @@ export default function ResumePage() {
           </div>
         </Section>
 
-        {/* CAD drawing deliverables */}
-        <Section title="CAD Drawing Deliverables">
-          <ul className="space-y-1.5 text-sm">
-            {projects
-              .filter((p) => p.kind === "drawing")
-              .map((p) => (
-                <li key={p.slug} className="sm:flex sm:justify-between sm:gap-2">
-                  <span className="font-semibold">{p.title}</span>
-                  <span className="text-muted">{p.source}</span>
-                </li>
-              ))}
-          </ul>
-        </Section>
-
         {/* Skills */}
         <Section title="Technical Skills">
-          <dl className="space-y-2 text-sm">
+          <dl className="space-y-3 text-sm">
             {skillGroups.map((g) => (
-              <div key={g.category} className="sm:flex sm:gap-2">
-                <dt className="shrink-0 font-semibold">{g.category}:</dt>
+              <div key={g.category} className="grid gap-1 sm:grid-cols-[200px_1fr] sm:gap-4">
+                <dt className="font-semibold text-accent">{g.category}</dt>
                 <dd className="text-muted">{g.skills.join(", ")}</dd>
               </div>
             ))}
-            <div className="sm:flex sm:gap-2">
-              <dt className="shrink-0 font-semibold">Certifications:</dt>
+            <div className="grid gap-1 sm:grid-cols-[200px_1fr] sm:gap-4">
+              <dt className="font-semibold text-accent">Certifications</dt>
               <dd className="text-muted">{certifications.join(", ")}</dd>
             </div>
-            <div className="sm:flex sm:gap-2">
-              <dt className="shrink-0 font-semibold">Languages:</dt>
+            <div className="grid gap-1 sm:grid-cols-[200px_1fr] sm:gap-4">
+              <dt className="font-semibold text-accent">Languages</dt>
               <dd className="text-muted">{languages.join(", ")}</dd>
             </div>
           </dl>

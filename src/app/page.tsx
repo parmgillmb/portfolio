@@ -33,7 +33,7 @@ export default function HomePage() {
             </div>
             <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
               {[
-                { v: profile.education.gpa, l: "GPA / 4.5" },
+                { v: profile.education.gpa, l: "GPA" },
                 { v: "2 yrs", l: "Industry experience" },
                 { v: "4", l: "Engineering projects" },
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
