@@ -71,7 +71,7 @@ export const experience: Experience[] = [
   },
   {
     company: "Manitoba Hydro",
-    division: "CSD",
+    division: "Construction Services Department (CSD)",
     role: "Quality Engineering Intern",
     period: "May 2023 – Dec 2023",
     location: "Winnipeg, MB",
@@ -179,6 +179,8 @@ export type Project = {
   drawingNumber?: string;
   bom?: BomRow[];
   related?: { slug: string; label: string };
+  // Case-study supplementary CAD drawing deliverables (links to drawing entries)
+  relatedDrawings?: { slug: string; label: string }[];
 };
 
 export const projects: Project[] = [
@@ -294,88 +296,9 @@ export const projects: Project[] = [
       { src: "/projects/cone-inspection/mount-fea-deformed.png", caption: "Mount FEA, deformed-shape plot." },
       { src: "/projects/cone-inspection/wiring.png", caption: "FR10 essential-equipment wiring schematic." },
     ],
-  },
-
-  {
-    slug: "red-house-retrofit",
-    kind: "case",
-    title: "RED House Net-Zero Energy Retrofit",
-    subtitle:
-      "An integrated renewable-energy retrofit that raises an existing Winnipeg home from 20 to 99.9 percent renewable within budget.",
-    course: "MECH 4692, Renewable & Sustainable Energy Design",
-    type: "Energy Systems",
-    categories: ["Energy Systems", "Systems Analysis"],
-    team: "Team project",
-    year: "2026",
-    featured: true,
-    cover: "/projects/red-house/house2.png",
-    summary:
-      "A whole-home energy retrofit to make an existing Winnipeg house fossil-fuel-free. Solar PV, solar thermal, wind, battery and thermal storage, a biomass stove, and an EV raise the Renewable Energy Ratio from 20.1 to 99.9 percent and reduce about 7,688 kg CO2e/yr to near zero, for $86,699 against a $100,000 budget, with a positive 30-year cash flow.",
-    tech: ["Energy Systems Modelling", "Solar PV & Thermal Sizing", "Wind Resource Analysis (Weibull)", "Combustion Stoichiometry", "8,760-hr Storage Simulation", "Discounted Cash Flow", "GHG Accounting", "Excel"],
-    metrics: [
-      { label: "Renewable Energy Ratio", value: "20.1 to 99.9%" },
-      { label: "GHG emissions", value: "7,688 to ~0 kg/yr" },
-      { label: "Capital cost", value: "$86,699 of $100k" },
-      { label: "30-year net profit", value: "+$41,627" },
-      { label: "Renewable generation", value: "173.8 GJ/yr" },
-    ],
-    sections: [
-      {
-        heading: "Problem",
-        body: [
-          "The RED House brief: retrofit an existing Winnipeg home to be fossil-fuel-free on a $100,000 budget, while keeping the hydro grid and natural-gas connections for resiliency and supporting multi-month off-grid operation each year.",
-          "The baseline home consumed 174.07 GJ/yr and emitted about 7,688 kg CO2e/yr, dominated by natural gas (4,771 kg) and gasoline (2,389 kg), for a Renewable Energy Ratio of 20.1 percent.",
-        ],
-        images: [
-          { src: "/projects/red-house/house1.png", caption: "The existing home selected for the retrofit." },
-          { src: "/projects/red-house/energy-pie.png", caption: "Baseline 2025 energy-load distribution by source." },
-          { src: "/projects/red-house/ghg-pie.png", caption: "Baseline GHG-emissions distribution by source." },
-        ],
-      },
-      {
-        heading: "Energy-Load Analysis",
-        body: [
-          "Electricity and natural-gas loads were normalized from monthly data to an hourly basis and extrapolated across the year. Heating load was driven by the indoor-outdoor temperature differential using 2014 hourly MET temperature data, and gasoline and propane loads came from vehicle and appliance usage.",
-          "This hourly baseline became the demand profile that every generation and storage subsystem was sized against.",
-        ],
-        images: [
-          { src: "/projects/red-house/eload-plot.png", caption: "Hourly electrical-load profile used to size generation and storage." },
-          { src: "/projects/red-house/ng-usage.png", caption: "Monthly natural-gas usage." },
-          { src: "/projects/red-house/elec-usage.png", caption: "Monthly electricity usage." },
-        ],
-      },
-      {
-        heading: "Renewable Generation Design",
-        body: [
-          "Solar PV: 12 Canadian Solar TOPHiKu6 470 W N-type TOPCon panels (5.64 kW), tilted 45 degrees south, generating an estimated 22.52 GJ/yr after a 97 percent DC-to-AC conversion.",
-          "Solar thermal: 3 ThermoRay TRB-30 flat-plate collectors at a 50 degree tilt, at 57.7 percent net recovery efficiency, delivering an estimated 158.31 GJ/yr, which covers most of the space- and water-heating load.",
-          "Wind: 16 Primus AIR 40 micro-turbines. The Winnipeg wind resource was characterized from 8,760 hourly observations (mean 4.59 m/s; Weibull k = 2.086, c = 4.02 m/s), and the turbine power curve was integrated over the velocity histogram with altitude- and temperature-corrected air density and Region I/II/III control logic, yielding about 305 kWh/yr per unit. Wind output is anti-correlated with solar, stronger on cold, cloudy days.",
-        ],
-      },
-      {
-        heading: "Storage, Controls & Biomass",
-        body: [
-          "A 9.9 kWh LiFePO4 battery (90 percent round-trip) and a hot-water thermal buffer tank balance the hourly mismatch between generation and demand. The control logic prioritizes local renewable self-consumption, charges the battery with surplus, exports the remainder to Manitoba Hydro, and meets deficits from battery first then grid, reaching net-zero grid interaction (minus $5.01/yr in Year 1).",
-          "A Nissan LEAF EV replaces the gasoline car, removing 34.47 GJ/yr of fuel and acting as a controllable load scheduled for high-generation hours. A Sedore Canadian 2000 multi-fuel stove provides winter space heat. A first-principles combustion analysis (5.66 kg air per kg dry fuel, 45 percent excess air, flue gas exiting at 315 C) gave a 57.7 percent net recovery efficiency and about 1,484 kW of useful heat from roughly 2.07 cords of wood per year.",
-        ],
-      },
-      {
-        heading: "Budget & Economics",
-        body: [
-          "Capital cost totalled $86,699, $13,301 under the $100,000 ceiling, split across solar PV ($3,600), solar thermal ($12,600), the EV ($20,000), battery storage ($14,000), wind turbines ($32,000), and the biomass stove ($4,499).",
-          "A 30-year discounted cash-flow analysis, fed by avoided electricity, gas, and gasoline costs, turns cash-flow positive in Year 22 and reaches a cumulative net profit of $41,627 by Year 30.",
-        ],
-      },
-      {
-        heading: "Outcome & Key Learnings",
-        body: [
-          "Combined renewable generation, solar PV (22.52), solar thermal (158.31), wind (1.10), and EV gasoline displacement (8.10), totals 173.83 GJ/yr against the 174.07 GJ/yr load, raising the Renewable Energy Ratio from 20.1 to 99.9 percent and cutting emissions to near zero while staying on budget and meeting the off-grid requirement.",
-          "No single technology was sufficient alone. Solar thermal carried the heating load, wind backfilled solar's weakest days, and storage with a grid-as-battery strategy reconciled supply and demand hour by hour. Designing the system as a coordinated whole, and proving it over 30 years, was what met the net-zero target within the constraints.",
-        ],
-      },
-    ],
-    gallery: [
-      { src: "/projects/red-house/house2.png", caption: "Retrofitted home concept." },
+    relatedDrawings: [
+      { slug: "end-effector-drawing", label: "End Effector Mount" },
+      { slug: "table-components-drawing", label: "Inspection Table Components" },
     ],
   },
 
@@ -390,7 +313,7 @@ export const projects: Project[] = [
     categories: ["Controls & Robotics", "Programming"],
     team: "Solo project",
     year: "2026",
-    featured: true,
+    featured: false,
     cover: "/projects/navigation/stress-test.png",
     summary:
       "A path-following controller for a nonholonomic unicycle robot navigating a known warehouse map. A* planning with uniform path resampling, heading-error speed scheduling, and near-goal deceleration reached 95 percent success on the nominal test and 100 percent on the stress test, against 35 and 30 percent for the provided baseline.",
@@ -473,10 +396,6 @@ export const projects: Project[] = [
           "Bone defects from trauma, surgery, and degenerative disease are a clinical burden, with millions of fractures annually needing scaffolds. Alginate microspheres are used in bone tissue engineering but are limited in mechanical strength, cost, and sustainability.",
           "This project evaluated eggshell-incorporated alginate microspheres. Reusing eggshell food-waste as a calcium- and hydroxyapatite-rich bioactive filler targets improved mechanical performance and osteogenic potential while reusing a byproduct.",
         ],
-        images: [
-          { src: "/projects/microspheres/microsphere.jpg", caption: "Fabricated alginate microsphere sample." },
-          { src: "/projects/microspheres/samples.jpg", caption: "Prepared microsphere sample batches." },
-        ],
       },
       {
         heading: "Fabrication",
@@ -513,6 +432,89 @@ export const projects: Project[] = [
       },
     ],
     gallery: [],
+  },
+
+  {
+    slug: "red-house-retrofit",
+    kind: "case",
+    title: "RED House Net-Zero Energy Retrofit",
+    subtitle:
+      "An integrated renewable-energy retrofit that raises an existing Winnipeg home from 20 to 99.9 percent renewable within budget.",
+    course: "MECH 4692, Renewable & Sustainable Energy Design",
+    type: "Energy Systems",
+    categories: ["Energy Systems", "Systems Analysis"],
+    team: "Team project",
+    year: "2026",
+    featured: false,
+    cover: "/projects/red-house/house2.png",
+    summary:
+      "A whole-home energy retrofit to make an existing Winnipeg house fossil-fuel-free. Solar PV, solar thermal, wind, battery and thermal storage, a biomass stove, and an EV raise the Renewable Energy Ratio from 20.1 to 99.9 percent and reduce about 7,688 kg CO2e/yr to near zero, for $86,699 against a $100,000 budget, with a positive 30-year cash flow.",
+    tech: ["Energy Systems Modelling", "Solar PV & Thermal Sizing", "Wind Resource Analysis (Weibull)", "Combustion Stoichiometry", "8,760-hr Storage Simulation", "Discounted Cash Flow", "GHG Accounting", "Excel"],
+    metrics: [
+      { label: "Renewable Energy Ratio", value: "20.1 to 99.9%" },
+      { label: "GHG emissions", value: "7,688 to ~0 kg/yr" },
+      { label: "Capital cost", value: "$86,699 of $100k" },
+      { label: "30-year net profit", value: "+$41,627" },
+      { label: "Renewable generation", value: "173.8 GJ/yr" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: [
+          "The RED House brief: retrofit an existing Winnipeg home to be fossil-fuel-free on a $100,000 budget, while keeping the hydro grid and natural-gas connections for resiliency and supporting multi-month off-grid operation each year.",
+          "The baseline home consumed 174.07 GJ/yr and emitted about 7,688 kg CO2e/yr, dominated by natural gas (4,771 kg) and gasoline (2,389 kg), for a Renewable Energy Ratio of 20.1 percent.",
+        ],
+        images: [
+          { src: "/projects/red-house/house1.png", caption: "The existing home selected for the retrofit." },
+          { src: "/projects/red-house/energy-pie.png", caption: "Baseline 2025 energy-load distribution by source." },
+          { src: "/projects/red-house/ghg-pie.png", caption: "Baseline GHG-emissions distribution by source." },
+        ],
+      },
+      {
+        heading: "Energy-Load Analysis",
+        body: [
+          "Electricity and natural-gas loads were normalized from monthly data to an hourly basis and extrapolated across the year. Heating load was driven by the indoor-outdoor temperature differential using 2014 hourly MET temperature data, and gasoline and propane loads came from vehicle and appliance usage.",
+          "This hourly baseline became the demand profile that every generation and storage subsystem was sized against.",
+        ],
+        images: [
+          { src: "/projects/red-house/eload-plot.png", caption: "Hourly electrical-load profile used to size generation and storage." },
+          { src: "/projects/red-house/ng-usage.png", caption: "Monthly natural-gas usage." },
+          { src: "/projects/red-house/elec-usage.png", caption: "Monthly electricity usage." },
+        ],
+      },
+      {
+        heading: "Renewable Generation Design",
+        body: [
+          "Solar PV: 12 Canadian Solar TOPHiKu6 470 W N-type TOPCon panels (5.64 kW), tilted 45 degrees south, generating an estimated 22.52 GJ/yr after a 97 percent DC-to-AC conversion.",
+          "Solar thermal: 3 ThermoRay TRB-30 flat-plate collectors at a 50 degree tilt, at 57.7 percent net recovery efficiency, delivering an estimated 158.31 GJ/yr, which covers most of the space- and water-heating load.",
+          "Wind: 16 Primus AIR 40 micro-turbines. The Winnipeg wind resource was characterized from 8,760 hourly observations (mean 4.59 m/s; Weibull k = 2.086, c = 4.02 m/s), and the turbine power curve was integrated over the velocity histogram with altitude- and temperature-corrected air density and Region I/II/III control logic, yielding about 305 kWh/yr per unit. Wind output is anti-correlated with solar, stronger on cold, cloudy days.",
+        ],
+      },
+      {
+        heading: "Storage, Controls & Biomass",
+        body: [
+          "A 9.9 kWh LiFePO4 battery (90 percent round-trip) and a hot-water thermal buffer tank balance the hourly mismatch between generation and demand. The control logic prioritizes local renewable self-consumption, charges the battery with surplus, exports the remainder to Manitoba Hydro, and meets deficits from battery first then grid, reaching net-zero grid interaction (minus $5.01/yr in Year 1).",
+          "A Nissan LEAF EV replaces the gasoline car, removing 34.47 GJ/yr of fuel and acting as a controllable load scheduled for high-generation hours. A Sedore Canadian 2000 multi-fuel stove provides winter space heat. A first-principles combustion analysis (5.66 kg air per kg dry fuel, 45 percent excess air, flue gas exiting at 315 C) gave a 57.7 percent net recovery efficiency and about 1,484 kW of useful heat from roughly 2.07 cords of wood per year.",
+        ],
+      },
+      {
+        heading: "Budget & Economics",
+        body: [
+          "Capital cost totalled $86,699, $13,301 under the $100,000 ceiling, split across solar PV ($3,600), solar thermal ($12,600), the EV ($20,000), battery storage ($14,000), wind turbines ($32,000), and the biomass stove ($4,499).",
+          "A 30-year discounted cash-flow analysis, fed by avoided electricity, gas, and gasoline costs, turns cash-flow positive in Year 22 and reaches a cumulative net profit of $41,627 by Year 30.",
+        ],
+      },
+      {
+        heading: "Outcome & Key Learnings",
+        body: [
+          "Combined renewable generation, solar PV (22.52), solar thermal (158.31), wind (1.10), and EV gasoline displacement (8.10), totals 173.83 GJ/yr against the 174.07 GJ/yr load, raising the Renewable Energy Ratio from 20.1 to 99.9 percent and cutting emissions to near zero while staying on budget and meeting the off-grid requirement.",
+          "No single technology was sufficient alone. Solar thermal carried the heating load, wind backfilled solar's weakest days, and storage with a grid-as-battery strategy reconciled supply and demand hour by hour. Designing the system as a coordinated whole, and proving it over 30 years, was what met the net-zero target within the constraints.",
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/projects/red-house/house2.png", caption: "Retrofitted home concept." },
+    ],
   },
 
   // ---------------------------------------------------------------------------
@@ -641,7 +643,7 @@ export const projects: Project[] = [
     categories: ["Technical Drawings", "Manufacturing"],
     team: "Professional work, drawn and designed by P. Gill",
     year: "2024",
-    featured: false,
+    featured: true,
     cover: "",
     summary:
       "A fabrication drawing for the generator guide bearing proximity probe bracket at Long Spruce Generating Station, drawn in Autodesk Inventor. The bracket holds a vibration proximity probe at a fixed position on the lower bracket of the generator unit.",
@@ -696,13 +698,13 @@ export const projects: Project[] = [
     categories: ["Technical Drawings", "Manufacturing"],
     team: "Professional work, drawn and designed by P. Gill",
     year: "2024",
-    featured: false,
+    featured: true,
     cover: "",
     summary:
       "An A0 installation drawing, drawn in Autodesk Inventor, that defines how the generator and turbine bearing proximity probe brackets and the key-phasor bracket are installed on the hydro generator unit, with sectioned assembly views and a joint torque table.",
     tech: ["Autodesk Inventor", "Installation Drawing", "Assembly Sections", "Joint Torque Specification", "CSA W59 / W47.1"],
     metrics: [
-      { label: "Brackets installed", value: "4 (2 turbine, 2 gen.)" },
+      { label: "Probe brackets installed", value: "5 (2 turbine, 2 gen., 1 key-phasor)" },
       { label: "Sheet size", value: "A0" },
       { label: "Max joint torque", value: "40 ft-lb" },
       { label: "Drawing no.", value: "1-00194-DE-60060-0001" },

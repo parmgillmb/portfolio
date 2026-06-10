@@ -7,6 +7,7 @@ import { Figure } from "@/components/Figure";
 import { Reveal } from "@/components/Reveal";
 import { PdfViewer } from "@/components/PdfViewer";
 import { DrawingCover } from "@/components/DrawingCover";
+import { ProjectCard } from "@/components/ProjectCard";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -28,6 +29,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
   const isDrawing = project.kind === "drawing";
+  const supplementaryDrawings = (project.relatedDrawings ?? [])
+    .map((d) => getProject(d.slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <article>
@@ -196,6 +200,25 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {project.gallery.map((img) => (
               <Figure key={img.src} image={img} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Supplementary CAD drawings (case studies with released drawings) */}
+      {supplementaryDrawings.length > 0 && (
+        <section className="container-page mt-20">
+          <Reveal>
+            <h2 className="section-title">Supplementary Drawings</h2>
+            <p className="mt-2 max-w-3xl text-muted">
+              Released CAD drawing deliverables produced for this project. Each opens to the full sheet with title block, views, and bill of materials.
+            </p>
+          </Reveal>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {supplementaryDrawings.map((d, i) => (
+              <Reveal key={d.slug} delay={i * 80} as="div">
+                <ProjectCard project={d} />
+              </Reveal>
             ))}
           </div>
         </section>
