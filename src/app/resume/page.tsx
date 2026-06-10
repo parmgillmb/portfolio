@@ -1,0 +1,148 @@
+import type { Metadata } from "next";
+import {
+  profile,
+  experience,
+  skillGroups,
+  certifications,
+  languages,
+  projects,
+} from "@/lib/data";
+import { PrintButton } from "@/components/PrintButton";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "Interactive resume for Parmeet Gill, Mechanical Engineer. Education, experience, projects, and skills.",
+};
+
+export default function ResumePage() {
+  return (
+    <div className="container-page py-12 sm:py-16">
+      {/* Action bar */}
+      <div className="no-print mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent">Resume</p>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight">Interactive Resume</h1>
+          <p className="mt-2 max-w-xl text-sm text-muted">
+            Use the button to save a clean PDF copy. Everything below mirrors my full resume.
+          </p>
+        </div>
+        <PrintButton />
+      </div>
+
+      {/* Resume sheet */}
+      <div className="card mx-auto max-w-3xl p-8 sm:p-10 print:border-0 print:p-0 print:shadow-none">
+        {/* Header */}
+        <header className="border-b border-border pb-6 text-center">
+          <h2 className="text-3xl font-bold tracking-tight">{profile.name}</h2>
+          <p className="mt-1 text-accent">{profile.title}</p>
+          <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-muted">
+            <span>{profile.phone}</span>
+            <span aria-hidden="true">·</span>
+            <a href={`mailto:${profile.email}`} className="hover:text-fg">{profile.email}</a>
+            <span aria-hidden="true">·</span>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-fg">
+              {profile.linkedinLabel}
+            </a>
+            <span aria-hidden="true">·</span>
+            <span>{profile.location}</span>
+          </div>
+        </header>
+
+        {/* Summary */}
+        <Section title="Summary">
+          <p className="text-sm leading-relaxed text-muted">{profile.summary}</p>
+        </Section>
+
+        {/* Education */}
+        <Section title="Education">
+          <div className="flex flex-wrap items-baseline justify-between gap-1">
+            <h3 className="font-semibold">{profile.education.school}</h3>
+            <span className="text-sm text-muted">{profile.education.graduated}</span>
+          </div>
+          <p className="text-sm italic text-muted">{profile.education.degree}</p>
+          <p className="mt-1 text-sm text-muted">GPA: {profile.education.gpa} · {profile.education.honours}</p>
+        </Section>
+
+        {/* Experience */}
+        <Section title="Experience">
+          <div className="space-y-5">
+            {experience.map((e) => (
+              <div key={e.role + e.period}>
+                <div className="flex flex-wrap items-baseline justify-between gap-1">
+                  <h3 className="font-semibold">{e.company}, {e.division}</h3>
+                  <span className="text-sm text-muted">{e.period}</span>
+                </div>
+                <p className="text-sm italic text-muted">{e.role} · {e.location}</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-muted">
+                  {e.highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* Projects */}
+        <Section title="Selected Projects">
+          <div className="space-y-3">
+            {projects
+              .filter((p) => p.kind === "case")
+              .map((p) => (
+                <div key={p.slug}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-1">
+                    <h3 className="font-semibold">{p.title}</h3>
+                    <span className="text-sm text-muted">{p.course}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted">{p.summary}</p>
+                </div>
+              ))}
+          </div>
+        </Section>
+
+        {/* CAD drawing deliverables */}
+        <Section title="CAD Drawing Deliverables">
+          <ul className="space-y-1.5 text-sm">
+            {projects
+              .filter((p) => p.kind === "drawing")
+              .map((p) => (
+                <li key={p.slug} className="sm:flex sm:justify-between sm:gap-2">
+                  <span className="font-semibold">{p.title}</span>
+                  <span className="text-muted">{p.source}</span>
+                </li>
+              ))}
+          </ul>
+        </Section>
+
+        {/* Skills */}
+        <Section title="Technical Skills">
+          <dl className="space-y-2 text-sm">
+            {skillGroups.map((g) => (
+              <div key={g.category} className="sm:flex sm:gap-2">
+                <dt className="shrink-0 font-semibold">{g.category}:</dt>
+                <dd className="text-muted">{g.skills.join(", ")}</dd>
+              </div>
+            ))}
+            <div className="sm:flex sm:gap-2">
+              <dt className="shrink-0 font-semibold">Certifications:</dt>
+              <dd className="text-muted">{certifications.join(", ")}</dd>
+            </div>
+            <div className="sm:flex sm:gap-2">
+              <dt className="shrink-0 font-semibold">Languages:</dt>
+              <dd className="text-muted">{languages.join(", ")}</dd>
+            </div>
+          </dl>
+        </Section>
+      </div>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="mt-6 border-b border-border pb-6 last:border-0">
+      <h2 className="mb-3 text-sm font-bold uppercase tracking-widest text-accent">{title}</h2>
+      {children}
+    </section>
+  );
+}
