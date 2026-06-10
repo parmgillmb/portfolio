@@ -118,20 +118,6 @@ body,
   transform: translateY(0);
 }
 
-/* Slow gear rotation (decorative SVG gears) */
-@keyframes gear-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.gear-spin {
-  animation: gear-spin var(--gear-dur, 60s) linear infinite;
-  transform-origin: center;
-}
-.gear-spin-reverse {
-  animation-direction: reverse;
-}
-
 /* Keyboard focus consistent with the accent colour */
 :focus-visible {
   outline: 2px solid rgb(var(--accent));
@@ -143,9 +129,6 @@ body,
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .gear-spin {
-    animation: none;
   }
   html {
     scroll-behavior: auto;

@@ -3,7 +3,6 @@
 
 export type SectionIconName =
   | "compass"
-  | "gear"
   | "wrench"
   | "hardhat"
   | "caliper"
@@ -18,12 +17,6 @@ const paths: Record<SectionIconName, React.ReactNode> = {
       <circle cx="12" cy="4" r="1.6" />
       <path d="M11 5.5 5.5 20M13 5.5 18.5 20" />
       <path d="M7.5 14.5a9 9 0 0 0 9 0" />
-    </>
-  ),
-  gear: (
-    <>
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1" />
     </>
   ),
   wrench: (
