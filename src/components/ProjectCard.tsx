@@ -22,7 +22,15 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="relative aspect-[16/10] overflow-hidden bg-surface-2">
-        {isDrawing ? (
+        {isDrawing && project.cover ? (
+          <Image
+            src={project.cover}
+            alt={`${project.title} drawing sheet`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="bg-white object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : isDrawing ? (
           <DrawingCover project={project} compact />
         ) : (
           <Image

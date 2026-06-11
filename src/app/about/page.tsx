@@ -1,33 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { profile, skillGroups, certifications, languages, versatilityPoints } from "@/lib/data";
+import { profile, versatilityPoints } from "@/lib/data";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { SectionIcon } from "@/components/SectionIcon";
 
 export const metadata: Metadata = {
   title: "About",
   description: profile.shortSummary,
 };
-
-const interests = [
-  {
-    title: "Mechanical Design & CAD",
-    body: "SolidWorks and Inventor models, assemblies, and weldments, released as fabrication and installation drawings driven by GD&T and DFM.",
-  },
-  {
-    title: "Simulation & Validation",
-    body: "FEA and CFD with mesh-convergence checks to confirm structural integrity and performance before fabrication.",
-  },
-  {
-    title: "Robotics & Automation",
-    body: "Collaborative robots, metrology, and CAD-driven software combined into repeatable inspection and motion systems.",
-  },
-  {
-    title: "Energy & Systems Analysis",
-    body: "Renewable-energy and combustion systems modelled from hourly load analysis through 30-year economics and GHG impact.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -67,80 +46,11 @@ export default function AboutPage() {
               ))}
             </ul>
           </Reveal>
-
-          <Reveal className="mt-12">
-            <h2 className="section-title">Engineering Interests</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {interests.map((it) => (
-                <div key={it.title} className="card p-5">
-                  <h3 className="font-bold">{it.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{it.body}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal className="mt-12">
-            <h2 className="section-title">Technical Strengths</h2>
-            <div className="mt-6 space-y-4">
-              {skillGroups.map((g) => (
-                <div key={g.category} className="card p-5">
-                  <h3 className="text-sm font-bold text-accent">{g.category}</h3>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {g.skills.map((s) => (
-                      <span key={s} className="chip">{s}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6">
-              <Link href="/skills" className="text-sm font-semibold text-accent hover:underline">
-                See the detailed skills breakdown
-              </Link>
-            </div>
-          </Reveal>
         </div>
 
         {/* Sidebar */}
         <aside className="space-y-6">
           <Reveal className="card p-6">
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-muted">
-              <SectionIcon name="ruler" size={15} className="text-accent" />
-              Education
-            </h2>
-            <p className="mt-3 font-bold">{profile.education.school}</p>
-            <p className="text-sm text-muted">{profile.education.faculty}</p>
-            <p className="mt-2 text-sm">{profile.education.degree}</p>
-            <p className="mt-2 text-sm text-muted">{profile.education.graduated}</p>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              <span className="chip">GPA {profile.education.gpa}</span>
-              <span className="chip">{profile.education.honours}</span>
-            </div>
-          </Reveal>
-
-          <Reveal className="card p-6" delay={60}>
-            <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Certifications</h2>
-            <ul className="mt-3 space-y-1.5 text-sm">
-              {certifications.map((c) => (
-                <li key={c} className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal className="card p-6" delay={120}>
-            <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Languages</h2>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {languages.map((l) => (
-                <span key={l} className="chip">{l}</span>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal className="card p-6" delay={180}>
             <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Based in</h2>
             <p className="mt-3 text-sm">{profile.location}</p>
             <a href={`mailto:${profile.email}`} className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">

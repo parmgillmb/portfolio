@@ -101,7 +101,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
       {/* Cover */}
       <div className="container-page mt-10">
-        {isDrawing ? (
+        {isDrawing && project.cover ? (
+          <div className="card relative aspect-[16/10] w-full max-w-2xl overflow-hidden bg-white">
+            <Image src={project.cover} alt={`${project.title} drawing sheet`} fill priority sizes="(max-width: 768px) 100vw, 672px" className="object-contain p-2" />
+          </div>
+        ) : isDrawing ? (
           <div className="card relative aspect-[4/3] w-full max-w-sm overflow-hidden bg-surface-2">
             <DrawingCover project={project} />
           </div>

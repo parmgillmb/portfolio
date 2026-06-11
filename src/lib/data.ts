@@ -728,7 +728,7 @@ export const projects: Project[] = [
     team: "Capstone CAD deliverable",
     year: "2025",
     featured: false,
-    cover: "",
+    cover: "/projects/drawings/end-effector.png",
     summary:
       "A SolidWorks part and detail drawing for the inspection-cell end effector. The mount carries the Mitutoyo dial gauge on the FR10 robot and aligns the probe tip with the Tool Center Point.",
     tech: ["SolidWorks", "Detail Drawing", "CNC Machining", "Aluminium 6061-T6", "Tooling Design"],
@@ -780,7 +780,7 @@ export const projects: Project[] = [
     team: "Capstone CAD deliverable",
     year: "2025",
     featured: false,
-    cover: "",
+    cover: "/projects/drawings/table-components.png",
     summary:
       "A multi-part detail drawing for the inspection table's centering system: slider bars, profile blocks, keys, and sliding racks that index and lock each cone size on the table.",
     tech: ["SolidWorks", "Detail Drawing", "Aluminium 6061-T6", "CNC Machining", "Fixture Design"],
@@ -839,7 +839,7 @@ export const projects: Project[] = [
     team: "Professional work, drawn and designed by P. Gill",
     year: "2024",
     featured: true,
-    cover: "",
+    cover: "/projects/drawings/proximity-fabrication.png",
     summary:
       "A fabrication drawing for the generator guide bearing proximity probe bracket at Long Spruce Generating Station, drawn in Autodesk Inventor. The bracket holds a vibration proximity probe at a fixed position on the lower bracket of the generator unit.",
     tech: ["Autodesk Inventor", "Fabrication Drawing", "ASTM A36 Steel", "Weldment Design", "CSA W59 / W47.1", "GD&T"],
@@ -894,7 +894,7 @@ export const projects: Project[] = [
     team: "Professional work, drawn and designed by P. Gill",
     year: "2024",
     featured: true,
-    cover: "",
+    cover: "/projects/drawings/proximity-installation.png",
     summary:
       "An A0 installation drawing, drawn in Autodesk Inventor, that defines how the generator and turbine bearing proximity probe brackets and the key-phasor bracket are installed on the hydro generator unit, with sectioned assembly views and a joint torque table.",
     tech: ["Autodesk Inventor", "Installation Drawing", "Assembly Sections", "Joint Torque Specification", "CSA W59 / W47.1"],
