@@ -39,11 +39,20 @@ export const metadata: Metadata = {
     description: profile.shortSummary,
     url: siteUrl,
     siteName: `${profile.name} Portfolio`,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name}, ${profile.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name}, ${profile.title}`,
     description: profile.shortSummary,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };
