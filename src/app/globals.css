@@ -193,24 +193,6 @@ body,
   animation: fade-rise 0.8s ease-out 0.4s both;
 }
 
-/* Slow gear rotation; phase offset keeps meshed pairs aligned */
-@keyframes gear-spin {
-  from {
-    transform: rotate(var(--gear-phase, 0deg));
-  }
-  to {
-    transform: rotate(calc(var(--gear-phase, 0deg) + 360deg));
-  }
-}
-.gear-spin {
-  animation: gear-spin var(--gear-dur, 60s) linear infinite;
-  transform-box: view-box;
-  transform-origin: 50% 50%;
-}
-.gear-spin-reverse {
-  animation-direction: reverse;
-}
-
 /* 3D tilt wrapper for cards */
 .tilt-wrap {
   perspective: 900px;
@@ -264,9 +246,6 @@ body,
   .animate-fade-rise,
   .animate-fade-rise-delay,
   .animate-fade-rise-delay-2 {
-    animation: none;
-  }
-  .gear-spin {
     animation: none;
   }
   .tilt-inner {
