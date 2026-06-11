@@ -1,10 +1,11 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { profile, featuredProjects, experience, skillGroups } from "@/lib/data";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { HeroBlueprint } from "@/components/HeroBlueprint";
 import { TechDivider } from "@/components/TechDivider";
 import { SectionIcon } from "@/components/SectionIcon";
+import { CountUp } from "@/components/CountUp";
 
 export default function HomePage() {
   return (
@@ -13,21 +14,21 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <HeroBlueprint />
         <div className="container-page pb-12 pt-16 sm:pt-24">
-          <div className="max-w-3xl animate-fade-up">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted">
+          <div className="max-w-3xl">
+            <p className="animate-fade-rise mb-4 inline-flex items-center gap-2 rounded-full liquid-glass px-4 py-1.5 text-sm text-muted">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
               {profile.availability}
             </p>
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="animate-fade-rise text-4xl font-bold leading-[1.02] tracking-tighter sm:text-7xl">
               {profile.name}
-              <span className="mt-2 block text-accent">{profile.title}</span>
+              <span className="text-gradient mt-2 block pb-1">{profile.title}</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">{profile.shortSummary}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="animate-fade-rise-delay mt-6 max-w-2xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
+            <p className="animate-fade-rise-delay mt-4 max-w-2xl text-base leading-relaxed text-muted">{profile.shortSummary}</p>
+            <div className="animate-fade-rise-delay-2 mt-8 flex flex-wrap gap-3">
               <Link href="/projects" className="btn-primary">
                 View Projects
               </Link>
@@ -38,7 +39,7 @@ export default function HomePage() {
                 Get in Touch
               </Link>
             </div>
-            <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
+            <dl className="animate-fade-rise-delay-2 mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
               {[
                 { v: profile.education.gpa, l: "GPA" },
                 { v: "2 yrs", l: "Industry experience" },
@@ -46,7 +47,9 @@ export default function HomePage() {
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
               ].map((s) => (
                 <div key={s.l} className="border-l-2 border-accent/30 pl-3">
-                  <dt className="text-2xl font-bold tracking-tight sm:text-3xl">{s.v}</dt>
+                  <dt className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                    <CountUp value={s.v} />
+                  </dt>
                   <dd className="mt-1 text-sm text-muted">{s.l}</dd>
                 </div>
               ))}
@@ -71,7 +74,7 @@ export default function HomePage() {
             All projects →
           </Link>
         </Reveal>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 80} as="div">
               <ProjectCard project={p} />
@@ -96,7 +99,7 @@ export default function HomePage() {
           </p>
           <h2 className="section-title mt-2">Industry Experience</h2>
         </Reveal>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {experience.map((e, i) => (
             <Reveal key={e.role + e.period} delay={i * 80} as="div" className="card p-6">
               <div className="flex items-start justify-between gap-4">

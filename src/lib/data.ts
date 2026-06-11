@@ -710,9 +710,6 @@ export const projects: Project[] = [
       { src: "/projects/rover/motor-mount-stress.png", caption: "Motor mount FEA stress." },
       { src: "/projects/rover/rocker-stress.png", caption: "Rocker arm FEA stress." },
     ],
-    supplementarySheets: [
-      { title: "Rover Shaft", file: "/drawings/rover-shaft.pdf", note: "Appendix detail drawing" },
-    ],
   },
 
   // ---------------------------------------------------------------------------

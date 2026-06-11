@@ -14,7 +14,7 @@ export function DrawingSheetCard({ sheet }: { sheet: SupplementarySheet }) {
       >
         {/* Title-block header strip */}
         <div className="flex items-center justify-between gap-3 border-b border-border bg-surface-2/60 px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-          <span className="truncate text-accent">Drawing Sheet</span>
+          <span className="min-w-0 truncate text-accent">Drawing Sheet</span>
           <span className="shrink-0">PDF</span>
         </div>
 

@@ -217,7 +217,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </Reveal>
 
           {supplementaryDrawings.length > 0 && (
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {supplementaryDrawings.map((d, i) => (
                 <Reveal key={d.slug} delay={i * 80} as="div">
                   <ProjectCard project={d} />
@@ -231,7 +231,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               <Reveal>
                 <h3 className="mt-12 text-xs font-bold uppercase tracking-wide text-muted">Assembly &amp; Part Sheets</h3>
               </Reveal>
-              <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {project.supplementarySheets.map((sheet, i) => (
                   <Reveal key={sheet.file} delay={i * 60} as="div">
                     <DrawingSheetCard sheet={sheet} />

@@ -45,6 +45,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Cinematic display typography for headings */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
 /* Prevent theme flash transition jank but keep colour transitions smooth */
 body,
 .theme-transition {
@@ -107,6 +115,85 @@ body,
   }
 }
 
+/* Liquid glass surface (theme-aware glassmorphism) */
+.liquid-glass {
+  background: rgb(var(--surface) / 0.55);
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  border: none;
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 0.1),
+    0 8px 32px rgb(0 0 0 / 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--fg) / 0.18) 0%,
+    rgb(var(--fg) / 0.06) 20%,
+    rgb(var(--fg) / 0) 40%,
+    rgb(var(--fg) / 0) 60%,
+    rgb(var(--fg) / 0.06) 80%,
+    rgb(var(--fg) / 0.18) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.dark .liquid-glass {
+  background: rgb(var(--surface) / 0.45);
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 0.08),
+    0 8px 32px rgb(0 0 0 / 0.3);
+}
+
+/* Gradient headline text */
+.text-gradient {
+  background: linear-gradient(100deg, rgb(var(--accent)) 0%, rgb(var(--accent) / 0.65) 55%, rgb(var(--fg) / 0.85) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cinematic entrance */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-rise {
+  animation: fade-rise 0.8s ease-out both;
+}
+.animate-fade-rise-delay {
+  animation: fade-rise 0.8s ease-out 0.2s both;
+}
+.animate-fade-rise-delay-2 {
+  animation: fade-rise 0.8s ease-out 0.4s both;
+}
+
+/* 3D tilt wrapper for cards */
+.tilt-wrap {
+  perspective: 900px;
+}
+.tilt-inner {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+  height: 100%;
+}
+
 /* Reveal-on-scroll utility */
 .reveal {
   opacity: 0;
@@ -145,6 +232,15 @@ body,
   .draw-line {
     stroke-dashoffset: 0;
     animation: none;
+  }
+  .animate-fade-rise,
+  .animate-fade-rise-delay,
+  .animate-fade-rise-delay-2 {
+    animation: none;
+  }
+  .tilt-inner {
+    transform: none !important;
+    transition: none;
   }
   html {
     scroll-behavior: auto;

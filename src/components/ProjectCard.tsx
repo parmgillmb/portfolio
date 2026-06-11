@@ -2,19 +2,22 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Project } from "@/lib/data";
 import { DrawingCover } from "./DrawingCover";
+import { TiltCard } from "./TiltCard";
 
 // Styled after an engineering document: a mono header strip like a title
 // block row, crop marks on hover, and a bordered footer row for the CTA.
+// Wrapped in a pointer-tracked 3D tilt on desktop.
 export function ProjectCard({ project }: { project: Project }) {
   const isDrawing = project.kind === "drawing";
   return (
+    <TiltCard className="h-full">
     <Link
       href={`/projects/${project.slug}`}
-      className="group card flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/[0.07]"
+      className="group card flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/[0.07]"
     >
       {/* Title-block header strip */}
       <div className="flex items-center justify-between gap-3 border-b border-border bg-surface-2/60 px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-muted">
-        <span className="truncate text-accent">{project.source ?? project.course}</span>
+        <span className="min-w-0 truncate text-accent">{project.source ?? project.course}</span>
         <span className="shrink-0">{project.drawingNumber ?? project.year}</span>
       </div>
 
@@ -59,5 +62,6 @@ export function ProjectCard({ project }: { project: Project }) {
         </span>
       </div>
     </Link>
+    </TiltCard>
   );
 }
