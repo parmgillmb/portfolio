@@ -4,7 +4,7 @@ import type { Project } from "@/lib/data";
 // raster image. Renders the title, drawing number, and a faint grid.
 export function DrawingCover({ project, compact = false }: { project: Project; compact?: boolean }) {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-surface-2">
+    <div className="brushed relative h-full w-full overflow-hidden bg-surface-2">
       {/* Faint blueprint grid */}
       <div
         aria-hidden="true"

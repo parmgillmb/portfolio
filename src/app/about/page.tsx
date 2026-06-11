@@ -3,6 +3,7 @@ import Link from "next/link";
 import { profile, skillGroups, certifications, languages, versatilityPoints } from "@/lib/data";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
+import { SectionIcon } from "@/components/SectionIcon";
 
 export const metadata: Metadata = {
   title: "About",
@@ -104,7 +105,10 @@ export default function AboutPage() {
         {/* Sidebar */}
         <aside className="space-y-6">
           <Reveal className="card p-6">
-            <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Education</h2>
+            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-muted">
+              <SectionIcon name="ruler" size={15} className="text-accent" />
+              Education
+            </h2>
             <p className="mt-3 font-bold">{profile.education.school}</p>
             <p className="text-sm text-muted">{profile.education.faculty}</p>
             <p className="mt-2 text-sm">{profile.education.degree}</p>

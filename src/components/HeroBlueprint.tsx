@@ -1,8 +1,10 @@
 import { HeroSchematic } from "./HeroSchematic";
+import { Gear } from "./Gear";
 
 // Blueprint-style decor for the home hero: a denser local grid with major
-// lines, registration crosshairs, and a dimensioned flange schematic that
-// draws in like CAD linework. Pure decoration, hidden from assistive tech.
+// lines, registration crosshairs, a dimensioned flange schematic that draws
+// in like CAD linework, and a slow meshed gear pair in the lower corner.
+// Pure decoration, hidden from assistive tech.
 export function HeroBlueprint() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -47,6 +49,19 @@ export function HeroBlueprint() {
       </div>
       <div className="absolute -right-16 -top-6 hidden text-accent/20 md:block lg:hidden">
         <HeroSchematic className="h-[360px] w-[360px]" />
+      </div>
+
+      {/* Meshed gear pair, lower right corner. Speeds follow the 14:9 tooth
+          ratio so the mesh reads as a real drive. */}
+      <div className="absolute -bottom-14 -right-6 origin-bottom-right scale-[0.62] text-fg/[0.13] sm:scale-90 lg:scale-100 dark:text-fg/[0.16]">
+        <div className="relative h-[340px] w-[360px]">
+          <div className="absolute bottom-0 right-0">
+            <Gear size={220} teeth={14} duration={84} />
+          </div>
+          <div className="absolute bottom-[114px] right-[150px] text-accent/25">
+            <Gear size={145} teeth={9} duration={54} reverse phase={20} />
+          </div>
+        </div>
       </div>
 
       {/* Soft accent wash */}

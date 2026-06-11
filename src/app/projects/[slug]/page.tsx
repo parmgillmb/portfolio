@@ -9,6 +9,7 @@ import { PdfViewer } from "@/components/PdfViewer";
 import { DrawingCover } from "@/components/DrawingCover";
 import { ProjectCard } from "@/components/ProjectCard";
 import { DrawingSheetCard } from "@/components/DrawingSheetCard";
+import { HydroGeneratorArt } from "@/components/HydroGeneratorArt";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -30,6 +31,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
   const isDrawing = project.kind === "drawing";
+  const isHydro = (project.source ?? "").includes("Manitoba Hydro");
   const supplementaryDrawings = (project.relatedDrawings ?? [])
     .map((d) => getProject(d.slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -40,15 +42,22 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 -z-10">
           {isDrawing ? (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgb(var(--fg)) 1px, transparent 1px), linear-gradient(to bottom, rgb(var(--fg)) 1px, transparent 1px)",
-                backgroundSize: "26px 26px",
-              }}
-            />
+            <>
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 opacity-[0.07]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, rgb(var(--fg)) 1px, transparent 1px), linear-gradient(to bottom, rgb(var(--fg)) 1px, transparent 1px)",
+                  backgroundSize: "26px 26px",
+                }}
+              />
+              {isHydro && (
+                <div aria-hidden="true" className="absolute -top-6 right-[3%] hidden text-fg/[0.16] lg:block dark:text-fg/[0.2]">
+                  <HydroGeneratorArt />
+                </div>
+              )}
+            </>
           ) : (
             <>
               <Image src={project.cover} alt="" fill className="object-cover opacity-[0.12]" priority />
@@ -156,9 +165,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <div className="container-page mt-16 space-y-20">
         {project.sections.map((section, si) => (
           <Reveal as="section" key={section.heading}>
-            <div className="flex items-baseline gap-4">
-              <span className="font-mono text-sm text-accent">{String(si + 1).padStart(2, "0")}</span>
+            <div className="flex items-center gap-4">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent/50 font-mono text-sm text-accent">
+                {String(si + 1).padStart(2, "0")}
+              </span>
               <h2 className="section-title">{section.heading}</h2>
+              <span aria-hidden="true" className="hidden h-px flex-1 bg-gradient-to-r from-border to-transparent sm:block" />
             </div>
             <div className="mt-5 space-y-4">
               {section.body.map((p, pi) => (
