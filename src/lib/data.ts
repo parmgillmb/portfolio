@@ -529,6 +529,192 @@ export const projects: Project[] = [
     ],
   },
 
+  {
+    slug: "hovercraft-flow-optimization",
+    kind: "case",
+    title: "Hovercraft Aerodynamic Optimization",
+    subtitle:
+      "A CFD and experiment driven redesign of a foam-board hovercraft that rebalances skirt airflow with a flow director and graduated intake holes.",
+    course: "MECH 3992, Mechanical Laboratories in Thermofluids",
+    type: "Fluids & CFD",
+    categories: ["Fluids & CFD", "Systems Analysis"],
+    team: "Team of 4 (B03-4)",
+    year: "2025",
+    featured: false,
+    cover: "/projects/hovercraft/design.png",
+    summary:
+      "A Phase 2 redesign of a laser-cut foam-board hovercraft built to maximize top speed. SolidWorks Flow Simulation, analytical momentum and Bernoulli analysis, and load-cell testing guided two changes: a 14 degree flow director that splits airflow cleanly into the skirt channels, and graduated intake holes that even out flow from back to front. The craft reached 6.42 m/s with a more balanced skirt flow, though the added mass cut top speed 12.5 percent against a Phase 1 setup that benefited from a misplaced splitter gap.",
+    tech: ["SolidWorks Flow Simulation (CFD)", "Momentum & Bernoulli Analysis", "Conservation of Mass", "Load-Cell Thrust Testing", "Foam-Board Fabrication", "Design Iteration"],
+    metrics: [
+      { label: "Top speed (Phase 2)", value: "6.42 m/s" },
+      { label: "Flow splitter angle", value: "14 deg" },
+      { label: "Lift pressure (analytical)", value: "30 Pa" },
+      { label: "Total mass", value: "100 g" },
+      { label: "Analysis methods", value: "3" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: [
+          "The hovercraft channels airflow from a single fixed BLDC motor, propeller, and duct into a plastic-film skirt to generate lift and forward motion. The motor, propeller, and duct cannot be changed, so every improvement targets airflow distribution, weight, and drag.",
+          "Phase 1 testing exposed uneven air distribution in the skirt that slowed the craft, with stagnant high-pressure zones where flow struck the channel back walls. Phase 2 set out to maximize top speed by redistributing skirt airflow, fixing the flow splitter at 14 degrees, the best-performing angle found in Phase 1.",
+        ],
+        images: [
+          { src: "/projects/hovercraft/design.png", caption: "Phase 2 hovercraft design." },
+          { src: "/projects/hovercraft/flow-director-render.png", caption: "Flow director integrated at the splitter." },
+        ],
+      },
+      {
+        heading: "Analysis Methods",
+        body: [
+          "Three methods worked in tandem. The analytical model reduced the rectilinear momentum equation to a static thrust relation, F = rho A V squared, showing that reducing frontal area and increasing thrust raise top speed, while conservation of mass and Bernoulli pointed to minimizing the perimeter-to-area ratio and internal pressure to improve lift efficiency.",
+          "Those equations set the numerical boundary conditions: a 0.91 N lift force and a 30 Pa lift pressure drove the internal flow. Experimental velocity tests ran on a circular guide-arm track, and a static thrust test used a load cell. Battery placement mattered: mounting it on the flow splitter reached 6.42 m/s versus 4.33 m/s in front of the duct.",
+          "Numerical simulation used SolidWorks Flow Simulation 2024 in separate internal and external flow studies, treating the air as incompressible at atmospheric conditions with pressure-driven flow.",
+        ],
+        images: [
+          { src: "/projects/hovercraft/velocity-test.png", caption: "Circular-track velocity test with guide arm." },
+          { src: "/projects/hovercraft/thrust-test.png", caption: "Static thrust test against a load cell." },
+        ],
+      },
+      {
+        heading: "Flow Director",
+        body: [
+          "The Phase 1 splitter left a crevice that raised speed only because the test track was circular. Phase 2 replaced it with a Flow Director: a 14 degree top face that sets the splitter angle, two curved front faces, and a center fillet that steer flow into the two channels and ease manufacturing.",
+          "CFD trajectories confirmed the change. The Phase 1 profile showed flow slamming the channel back walls, creating turbulence, eddies, and a high stagnant-pressure zone. The Phase 2 profile directed flow into the separate channels without the sudden impact.",
+        ],
+        images: [
+          { src: "/projects/hovercraft/flow-director.png", caption: "Flow director geometry: 14 degree top face, curved front, center fillet." },
+          { src: "/projects/hovercraft/flow-phase1.png", caption: "Phase 1 internal flow: impact and eddies at the channel back wall." },
+          { src: "/projects/hovercraft/flow-phase2.png", caption: "Phase 2 internal flow: directed cleanly into the channels." },
+        ],
+      },
+      {
+        heading: "Graduated Intake Holes",
+        body: [
+          "The channel intake holes were redesigned to grow from small at the back to large at the front, pushing more air toward the front of the skirt where Phase 1 ran short.",
+          "Cut-plot velocity profiles taken 2.54 mm below the holes showed the effect: Phase 1 concentrated flow in the rear holes, while Phase 2 distributed flow evenly through every hole, matching the even-distribution objective.",
+        ],
+        images: [
+          { src: "/projects/hovercraft/holes-design.png", caption: "Graduated intake holes, small at the back to large at the front." },
+          { src: "/projects/hovercraft/holes-phase1.png", caption: "Phase 1 skirt velocity: flow concentrated at the back." },
+          { src: "/projects/hovercraft/holes-phase2.png", caption: "Phase 2 skirt velocity: balanced across all holes." },
+        ],
+      },
+      {
+        heading: "Results & Tradeoff",
+        body: [
+          "The combined changes evened out the skirt flow, but raw speed fell. The hovercraft reached 6.42 m/s, a 12.5 percent decrease from Phase 1. The flow director added 7 g to a 100 g craft, and the analytical model showed that added mass outweighed the airflow gains for top speed.",
+          "Part of the Phase 1 advantage was also an artifact: a gap left at the back of the splitter raised speed only on the circular track and was removed for Phase 2. The redesign therefore traded measured top speed for the cleaner, more repeatable airflow it was built to deliver.",
+        ],
+        images: [
+          { src: "/projects/hovercraft/combined-phase1.png", caption: "Phase 1 combined velocity profile." },
+          { src: "/projects/hovercraft/combined-phase2.png", caption: "Phase 2 combined velocity profile." },
+        ],
+      },
+      {
+        heading: "Outcome & Key Learnings",
+        body: [
+          "Phase 2 met its airflow-distribution goal but not the raw-speed goal, a clear mass-versus-flow tradeoff that the three methods agreed on. The internal-flow redesign worked; the weight it cost did not pay back in speed.",
+          "An external-flow CFD study set the next targets: frontal drag and a low-pressure wake behind the splitter. Future work is to reduce weight and improve external aerodynamics while keeping the improved internal distribution.",
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/projects/hovercraft/external-velocity.jpg", caption: "External-flow velocity study." },
+      { src: "/projects/hovercraft/external-pressure.jpg", caption: "External-flow pressure study highlighting frontal drag." },
+    ],
+  },
+
+  {
+    slug: "rover-structural-analysis",
+    kind: "case",
+    title: "Ground Rover Structural Redesign",
+    subtitle:
+      "An analytical, FEA, and experimental redesign of a four-wheel rover chassis and wheels that lightens the structure and nearly doubles obstacle clearance.",
+    course: "MECH 3892, Mechanical Laboratories in Solid Mechanics",
+    type: "Structural Analysis & FEA",
+    categories: ["Structural Analysis & FEA", "Design & FEA"],
+    team: "Team of 4 (B01-1)",
+    year: "2025",
+    featured: false,
+    cover: "/projects/rover/rover-side.jpg",
+    summary:
+      "A Phase 2 structural redesign of a prototype four-wheel ground rover with an HDF body, PLA wheels, and four 24 V motors. Hand calculations, SolidWorks FEA with mesh convergence, and static, aggregate, and obstacle testing validated two changes: chassis lightening holes and larger 4 in paddle wheels. The rover stayed well under the 0.1 in deflection limit at 7 lbf (0.042 in), dropped weight, and raised obstacle clearance from 2.25 to 3.75 in.",
+    tech: ["SolidWorks FEA", "Mesh Convergence Studies", "Beam Bending & Stress Analysis", "Load-Cell Testing", "St. Venant's Principle", "HDF / PLA Materials"],
+    metrics: [
+      { label: "Max obstacle cleared", value: "3.75 in (was 2.25)" },
+      { label: "Deflection at 7 lbf", value: "0.042 in" },
+      { label: "Deflection limit", value: "0.1 in" },
+      { label: "Max towing force", value: "2.19 lbf" },
+      { label: "Wheel diameter", value: "4 in (was 3)" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: [
+          "The prototype is a four-wheel ground rover with a high-density fiberboard (HDF) body and four 24 V motors paired per side for skid steering. Phase 1 found it could carry the static load and cross gravel, but it could not climb obstacles taller than 0.75 in on a head-on approach.",
+          "Phase 2 set out to improve climbing and reduce weight without losing strength or exceeding the 0.1 in chassis deflection limit at a 7 lbf payload.",
+        ],
+        images: [
+          { src: "/projects/rover/rover-side.jpg", caption: "Prototype four-wheel rover." },
+          { src: "/projects/rover/rover-top.jpg", caption: "Top view on the gravel test bed." },
+        ],
+      },
+      {
+        heading: "Approach",
+        body: [
+          "Three methods cross-checked every decision. Analytical models reduced each component, chassis, rocker, motor mount, and wheel paddles, to beam-bending cases to estimate stress, deflection, and moment of inertia, treating the materials as linear-elastic and isotropic under static load.",
+          "SolidWorks FEA then localized stress and displacement, with a mesh-convergence study on each part holding stress change under 5 percent and symmetry models to cut computation. St. Venant's principle was used to discount sharp-corner stress artifacts the solver cannot resolve.",
+          "Experimental tests rounded out the static models: a static load test with a threaded rod, load cell, and caliper; an aggregate pulling-force test on 0.15 in gravel; and an obstacle-climb test on stacked blocks.",
+        ],
+        images: [
+          { src: "/projects/rover/chassis-convergence.png", caption: "Mesh convergence study for the chassis." },
+        ],
+      },
+      {
+        heading: "Design Changes & FEA",
+        body: [
+          "Two changes drove Phase 2. Lightening holes were cut into low-stress regions of the chassis to shed mass without losing stiffness; FEA put chassis deflection at 9.56e-4 in and stress at 0.179 ksi, confirming the structure was stiffer than the load required. The wheels were enlarged to 4 in diameter with every other paddle extended outward for climbing and traction.",
+          "The wheel paddles were checked in two load cases. Peak FEA stresses were sharp-corner artifacts; probe values of 0.39 and 2.11 ksi sat in the same order as the analytical estimates and below the HDF yield strength, giving confidence to move to physical testing.",
+        ],
+        images: [
+          { src: "/projects/rover/chassis-stress.png", caption: "Chassis von Mises stress, Phase 2." },
+          { src: "/projects/rover/chassis-displacement.png", caption: "Chassis y-displacement, Phase 2." },
+          { src: "/projects/rover/wheel-case1-stress.png", caption: "Wheel paddle stress, Case 1." },
+          { src: "/projects/rover/wheel-case2-stress.png", caption: "Wheel paddle stress, Case 2." },
+        ],
+      },
+      {
+        heading: "Testing Results",
+        body: [
+          "Static load: vertical deflection was 0.042 in at 7.01 lbf, well under the 0.1 in limit, and 0.059 in at 9.82 lbf, still within limit, with no cracking or permanent deformation.",
+          "Obstacle climb: the rover cleared 2.25 in at both 0 and 45 degree approaches, where Phase 1 had failed the 2.25 in head-on case, and cleared 3.75 in at 45 degrees, a 1.5 in improvement.",
+          "Aggregate: pulling forces ranged from 0.60 to 2.19 lbf. The aggressive paddles dug into the gravel and lifted the front of the rover, shifting weight onto the rear wheels and pointing to a center-of-mass correction.",
+        ],
+        images: [
+          { src: "/projects/rover/static-test.jpg", caption: "Static load test with threaded rod and caliper." },
+          { src: "/projects/rover/obstacle-test.jpg", caption: "Obstacle climb test on stacked blocks." },
+          { src: "/projects/rover/aggregate-test.jpg", caption: "Aggregate pulling-force test on gravel." },
+          { src: "/projects/rover/static-p1vsp2.png", caption: "Static-load deflection, Phase 1 vs Phase 2." },
+        ],
+      },
+      {
+        heading: "Outcome & Key Learnings",
+        body: [
+          "Phase 2 met its goals: a lighter chassis, obstacle clearance up to 3.75 in, and deflection held under limit. The three methods reinforced each other, analytical bounding the problem, FEA localizing stress and deflection with judgment on artifacts, and testing exposing the dynamic front-lift behavior the static models could not predict.",
+          "The clearest lesson was that static analysis alone misses real terrain behavior: the traction gain from the new paddles created a weight-transfer problem only the experiment revealed. Next steps are to rebalance the center of mass and evaluate a rocker-bogie suspension.",
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/projects/rover/motor-mount-stress.png", caption: "Motor mount FEA stress." },
+      { src: "/projects/rover/rocker-stress.png", caption: "Rocker arm FEA stress." },
+    ],
+    supplementarySheets: [
+      { title: "Rover Shaft", file: "/drawings/rover-shaft.pdf", note: "Appendix detail drawing" },
+    ],
+  },
+
   // ---------------------------------------------------------------------------
   // CAD drawing deliverables (live PDF sheets)
   // ---------------------------------------------------------------------------

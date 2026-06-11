@@ -42,7 +42,7 @@ export default function HomePage() {
               {[
                 { v: profile.education.gpa, l: "GPA" },
                 { v: "2 yrs", l: "Industry experience" },
-                { v: "4", l: "Engineering projects" },
+                { v: "6", l: "Engineering projects" },
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
               ].map((s) => (
                 <div key={s.l} className="border-l-2 border-accent/30 pl-3">
