@@ -62,7 +62,7 @@ export const experience: Experience[] = [
     highlights: [
       "Developed detailed CAD models and assemblies in SolidWorks, applying GD&T (ASME Y14.5) and Design for Manufacturability so parts were optimized for fabrication, precision, and compliance with design specifications.",
       "Prepared and revised technical drawings, BOMs, and engineering reports; performed tolerance analysis and stack-up reviews to verify fit and function across mating components.",
-      "Designed and released the Long Spruce Generating Station proximity probe bracket and its installation drawing in Autodesk Inventor, specifying A36 steel weldments, CSA W59/W47.1 welding, fastener torques, and protective coatings.",
+      "Designed the Long Spruce Generating Station proximity probe bracket and its fabrication and installation drawings in Autodesk Inventor, specifying A36 steel weldments, CSA W59/W47.1 welding, fastener torques, and protective coatings; the drawings were sealed by a Professional Engineer and released for fabrication and installation.",
       "Managed document revisions using Autodesk Vault PDM for version control and release tracking.",
       "Conducted Finite Element Analysis to evaluate structural integrity, stress distribution, and performance under load for components and mounts.",
       "Provided engineering guidance to field technicians during installation and commissioning, documenting findings and resolving design-to-field discrepancies.",
@@ -846,9 +846,9 @@ export const projects: Project[] = [
     metrics: [
       { label: "Material", value: "ASTM A36 steel" },
       { label: "Assembly weight", value: "~17 lb" },
-      { label: "Fraction tolerance", value: "±1/16 in" },
       { label: "Welding", value: "CSA W59 / W47.1" },
       { label: "Drawing no.", value: "1-00194-DD-60060-0004" },
+      { label: "Release", value: "P.Eng sealed, issued for fabrication" },
     ],
     drawingFile: "/drawings/ls-vibe-bracket-fabrication.pdf",
     drawingNumber: "1-00194-DD-60060-0004, Rev 00",
@@ -868,7 +868,7 @@ export const projects: Project[] = [
       {
         heading: "Specifications & Standards",
         body: [
-          "Welding is specified to CSA W59 by a Canadian Welding Bureau shop certified to CSA W47.1, with 100 percent visual inspection and repair by grinding and re-welding. Surfaces are cleaned to SSPC SP-2/SP-3 and SP-1, then coated to a minimum 10 mil total thickness in grey RAL 7042. Fraction tolerance is ±1/16 in with a 125 surface finish. The sheet was issued for fabrication and references the installation drawing 1-00194-DE-60060-0001.",
+          "Welding is specified to CSA W59 by a Canadian Welding Bureau shop certified to CSA W47.1, with 100 percent visual inspection and repair by grinding and re-welding. Surfaces are cleaned to SSPC SP-2/SP-3 and SP-1, then coated to a minimum 10 mil total thickness in grey RAL 7042. Fraction tolerance is ±1/16 in with a 125 surface finish. The drawing was sealed by a Professional Engineer and issued for fabrication, and references the installation drawing 1-00194-DE-60060-0001.",
         ],
       },
     ],
@@ -903,6 +903,7 @@ export const projects: Project[] = [
       { label: "Sheet size", value: "A0" },
       { label: "Max joint torque", value: "40 ft-lb" },
       { label: "Drawing no.", value: "1-00194-DE-60060-0001" },
+      { label: "Release", value: "P.Eng sealed, issued for construction" },
     ],
     drawingFile: "/drawings/ls-vibe-bracket-installation.pdf",
     drawingNumber: "1-00194-DE-60060-0001, Rev 00",
@@ -922,7 +923,7 @@ export const projects: Project[] = [
       {
         heading: "Joints & Standards",
         body: [
-          "A joint table specifies each connection: generator guide bearing bracket to lower bracket (1/2-13 UNC, 4 fasteners, Loctite 242, 40 ft-lb), key-phasor bracket to creep-indicator bracket (3/8-16 UNC, 12 fasteners, 30 ft-lb), and turbine guide bearing bracket to cover plate (3/8-16 UNC, 8 fasteners, 20 ft-lb). Welding follows CSA W59 and W47.1 with 100 percent visual inspection. The sheet was issued for construction.",
+          "A joint table specifies each connection: generator guide bearing bracket to lower bracket (1/2-13 UNC, 4 fasteners, Loctite 242, 40 ft-lb), key-phasor bracket to creep-indicator bracket (3/8-16 UNC, 12 fasteners, 30 ft-lb), and turbine guide bearing bracket to cover plate (3/8-16 UNC, 8 fasteners, 20 ft-lb). Welding follows CSA W59 and W47.1 with 100 percent visual inspection. The drawing was sealed by a Professional Engineer and issued for construction.",
         ],
       },
     ],

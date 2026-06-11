@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/lib/data";
 
-const base = "https://parmeetgill.dev";
+const base = "https://parmgill-mb.ca";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/about", "/experience", "/projects", "/skills", "/resume", "/contact"].map(

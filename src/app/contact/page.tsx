@@ -46,6 +46,22 @@ export default function ContactPage() {
             value={profile.location}
             icon={<><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></>}
           />
+
+          <div className="card p-5">
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </span>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">References</p>
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Available upon request, including supervisors and managers from my Manitoba Hydro internships.
+            </p>
+          </div>
         </aside>
       </div>
     </>

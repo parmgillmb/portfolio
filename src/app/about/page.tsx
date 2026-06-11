@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { profile, versatilityPoints } from "@/lib/data";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
@@ -50,7 +51,25 @@ export default function AboutPage() {
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          <Reveal className="card p-6">
+          <Reveal className="card overflow-hidden p-0">
+            <div className="relative aspect-[4/5] w-full bg-surface-2">
+              <Image
+                src="/profile.jpg"
+                alt={`${profile.name}, ${profile.title}`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 360px"
+                className="object-cover"
+              />
+              {/* Drawing-frame corner ticks */}
+              <span aria-hidden="true" className="absolute left-2.5 top-2.5 h-3 w-3 border-l border-t border-accent/70" />
+              <span aria-hidden="true" className="absolute right-2.5 top-2.5 h-3 w-3 border-r border-t border-accent/70" />
+              <span aria-hidden="true" className="absolute bottom-2.5 left-2.5 h-3 w-3 border-b border-l border-accent/70" />
+              <span aria-hidden="true" className="absolute bottom-2.5 right-2.5 h-3 w-3 border-b border-r border-accent/70" />
+            </div>
+          </Reveal>
+
+          <Reveal className="card p-6" delay={60}>
             <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Based in</h2>
             <p className="mt-3 text-sm">{profile.location}</p>
             <a href={`mailto:${profile.email}`} className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">

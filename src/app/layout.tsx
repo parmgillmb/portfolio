@@ -11,7 +11,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
-const siteUrl = "https://parmeetgill.dev";
+const siteUrl = "https://parmgill-mb.ca";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

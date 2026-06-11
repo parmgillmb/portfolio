@@ -27,10 +27,18 @@ export default function ResumePage() {
           </p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight">Interactive Resume</h1>
           <p className="mt-2 max-w-xl text-sm text-muted">
-            Use the button to save a clean PDF copy. Everything below mirrors my full resume.
+            Download the PDF, or use the print button to save a copy. Everything below mirrors my full resume.
           </p>
         </div>
-        <PrintButton />
+        <div className="flex shrink-0 flex-wrap items-center gap-3">
+          <a href="/Parmeet-Gill-Resume.pdf" download className="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+            </svg>
+            Download PDF
+          </a>
+          <PrintButton />
+        </div>
       </div>
 
       {/* Resume sheet */}
@@ -122,6 +130,13 @@ export default function ResumePage() {
               <dd className="text-muted">{languages.join(", ")}</dd>
             </div>
           </dl>
+        </Section>
+
+        {/* References */}
+        <Section title="References">
+          <p className="text-sm leading-relaxed text-muted">
+            Available upon request, including supervisors and managers from my Manitoba Hydro internships.
+          </p>
         </Section>
       </div>
     </div>
