@@ -15,8 +15,8 @@ export default function AboutPage() {
       <PageHeader
         icon="caliper"
         eyebrow="About"
-        title="A versatile engineer across design, analysis, and the field."
-        description="My work moves between CAD, simulation, manufacturing, controls, and on-site installation. The range is the point: I adapt to the tool and the problem in front of me."
+        title="Design, analysis, and the field."
+        description="My work spans CAD, simulation, manufacturing, controls, and on-site installation. Each claim below is tied to a specific project or release."
       />
 
       <div className="container-page mt-12 grid gap-12 lg:grid-cols-3">

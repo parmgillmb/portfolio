@@ -328,14 +328,82 @@ next.config.mjs, wrangler.toml, tailwind.config.ts, tsconfig.json, postcss.confi
 # Project Database
 
 Order in `projects[]` (also the Projects-page order): cone-inspection, unicycle,
-microspheres, red-house, hovercraft, rover, end-effector (drawing),
-table-components (drawing), proximity-fabrication (drawing), proximity-installation
-(drawing). **Featured (home):** Automated Cone Inspection System, Proximity Probe
-Bracket (Fabrication), Proximity Probe Bracket (Installation).
+microspheres, red-house, hovercraft, rover, cantilever-support-structure,
+tractor-speed-reducer, end-effector (drawing), table-components (drawing),
+proximity-fabrication (drawing), proximity-installation (drawing). **Featured
+(home):** Automated Cone Inspection System, Proximity Probe Bracket
+(Fabrication), Proximity Probe Bracket (Installation).
 
 Provenance for all entries: `PROJECT_AUDIT.md` (in `website/`), the four LaTeX
 reports, and the CAD PDFs. Authoritative material note: the **End Effector drawing
 specifies Al 6061-T6** (overrides report text that said 6063-T6).
+
+## Machine Design — MECH 3652 (Dr. Paul Labossiere), two projects
+
+### Lightweight Cantilever Support Structure (Project 1, Group 4, Oct 2025)
+- **Slug:** `cantilever-support-structure` · kind: case · type Machine Design ·
+  team of 5 (Ivan Thoroski, Parmeet Gill, Gurleen Lakhanpal, Emily Kruk, Siumi
+  Gonzales Pinedo).
+- **Problem:** support a 1000 N horizontal load applied 500 mm above the floor and
+  500 mm from a wall the structure may not touch; floor-top mounting only; ASTM
+  A36; FOS ≥ 2.0 at 99% reliability for 10,000 cycles; minimize mass.
+- **Process:** five member-concepts FEA'd (Parmeet's: inverted-V 3-beam frame,
+  59.8 MPa / 2.11 mm / 1.67 kg / FOS 4.18, lost on weld manufacturability) →
+  weighted matrix (deflection 30 / manufacturability 30 / mass 20 / FOS 20)
+  selected a planar 3-member frame (7.8/10) → cross-section study at constant
+  weight: hollow square 81.8 MPa/5.45 mm vs hollow circle 96.1 MPa/7.47 mm vs
+  **I-beam 77.6 MPa/3.80 mm/FOS 3.22 at 2.964 kg** (two profiles: 25.2 mm deep
+  diagonal, 22.45 mm deep elsewhere; 20 mm flanges, 5 mm web).
+- **Verification (Parmeet ran topology + mesh convergence):** topology study
+  cuts rejected as impractical, confirming near-optimal geometry; convergence
+  5 mm→1 mm, 40,939→3,056,413 elements, ≥3 elements across webs, probe 1 mm off
+  the singularity, converged 126.7 MPa. Welds: AWS min leg for 5 mm material,
+  E60xx, shear <1 MPa vs 124 MPa allowable (static FOS >130, weld fatigue FOS
+  70/95 with Kf 2.7 + shear Goodman). Anchorage: A36 base plates + 4× 0.50 in
+  F1554 Grade 36 bolts (≤0.7 MPa vs 36.6 kN capacity). Euler buckling: 24.3 kN
+  critical vs 0.77 kN applied. Marin fatigue: Se ≈ 104 MPa; 10k-cycle fatigue
+  strength 237.9 MPa vs 126.7 applied; predicted life 6.2M cycles; SolidWorks
+  fatigue study showed no damage at 10k.
+- **Files:** `public/projects/support-structure/*` (member-diagram,
+  concept1-stress, initial-model, ibeam-section/stress/deflection, topology,
+  convergence-plot, stress-location, square-section). Source: LaTeX report in
+  `website/Group_4_Machine_Design_Project_1/`.
+
+### 4:1 Tractor Speed Reducer (Project 2, Group 1, Dec 2025)
+- **Slug:** `tractor-speed-reducer` · kind: case · type Machine Design · team of
+  5 (Owen Dee, Parmeet Gill, Brook Rivard, Peter Kolodziej, Joshua Limpright).
+- **Problem:** speed reducer 1.5:1–10:1 at 1–75 hp; chosen application a tractor
+  wheel drive: 60 hp, 640→160 RPM, 667.57→2670.28 N·m. Full chain, gear, AND
+  belt designs required; select one; fully design one shaft with bearings and
+  retaining rings.
+- **Trade study:** chain = No. 100/120 roller chain, 4 sprockets, 15 in centers,
+  ~44 in; belt = two 2:1 V-belt stages, 9/18 in sheaves, 43.5 in (single-stage
+  would need 36 in sheave); gear = four spur gears 10/20 in dia × 2 in face,
+  50 in tip-to-tip. **Gear drive selected**: efficiency + contamination
+  resistance (enclosable gearbox), no tensioning/wrap-angle allowance, no
+  elongation/slip, right for low-speed high-torque outdoor duty.
+- **Gear design:** two stacked 2:1 stages; 15T pinion (10 in PD) + 30T gear
+  (20 in PD), 2 in face, 20° PA, AISI 4140 Grade 1 (Sy 93 ksi, 197 HB), AGMA
+  method (Lewis Y=0.290, Kv, J, YN/ZN at 10^7 cycles, through-hardened St
+  28,028 psi); DXF involute profiles → SolidWorks; 1-9/16 in bore with
+  3/8 × 1/2 in keyseat.
+- **Output shaft:** 42 in long; four critical locations (gear-seat shoulder,
+  keyway, retaining-ring groove, bearing shoulder) sized iteratively with Marin
+  + Kf/Kfs from notch sensitivity and D/d, r/d. 1020 CR failed keyway (1.63) →
+  **1050 CR steel (Sy 580 MPa), keyway FOS 2.17**; ring groove screened 1.61
+  with Kt 5.0, real groove geometry (0.068×0.047 in, r 0.010) gave 2.61; bearing
+  seat 1.1810 in for NTN 6406ZZ double-shielded (8,800 RPM rating); keys
+  crush-checked: 0.472 in (gear), 1.106 in (wheel ends); retaining rings rated
+  7,210 / 12,400 lb thrust.
+- **FEA:** per-stage gear checks with driven bore fixed (jammed-wheel worst
+  case): 82.9 MPa stage 1, 133.7 MPa stage 2 at the contact patch (order of
+  magnitude under 4140 yield). Shaft: 0.25→0.05 in mesh, 90k→3.5M elements,
+  converged within 1% at **31.85 ksi**, 0.006 in deflection under 1969.5 lb·ft.
+- **Files:** `public/projects/speed-reducer/*` (drive-train, pinion/driven-gear,
+  gear-dxf, stage1/2-stress, shaft-layout/full/section/closeup,
+  shaft-fea-stress/deflection, shaft-convergence, chain-alternative,
+  belt-alternative). Source: LaTeX report in
+  `website/Machine_Design_Project_2/`.
 
 ## Capstone Project — MECH 4860, Automated Cone Inspection System
 Industry-sponsored capstone (Northern Blower Inc.), team of 5, 2025. This single
@@ -665,6 +733,18 @@ How website copy must be written (carried from the owner's standing instructions
 
 Newest first. Commits are on `main` (`parmgillmb/portfolio`). Append an entry for
 every significant change.
+
+- **2026-06-12** Added two MECH 3652 Machine Design case studies (Lightweight
+  Cantilever Support Structure; 4:1 Tractor Speed Reducer) with 25 curated
+  figures and a new "Machine Design" filter category (now 12 projects, 8 case
+  studies). De-templating pass: removed the home availability badge and the
+  duplicate hero summary paragraph; CTA heading "Let's build something
+  well-engineered." replaced with factual contact copy; footer "Built with
+  Next.js..." credit removed; "Interactive Resume" retitled "Resume"; resume
+  "Selected Projects" section removed (now points to /projects); About header
+  copy made evidence-based; versatility "four domains" claim corrected; home
+  stat updated to 8 engineering projects. Impact: projects-first, engineer-toned
+  site; resume page shorter and intentional.
 
 - **2026-06-11 — `de386e9`** Removed transient resume build artifacts from the
   repo; gitignored `.resume-build/` and `.og-build/`. Repo hygiene.

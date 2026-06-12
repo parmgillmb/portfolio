@@ -15,19 +15,11 @@ export default function HomePage() {
         <HeroBlueprint />
         <div className="container-page pb-12 pt-16 sm:pt-24">
           <div className="max-w-3xl">
-            <p className="animate-fade-rise mb-4 inline-flex items-center gap-2 rounded-full liquid-glass px-4 py-1.5 text-sm text-muted">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              {profile.availability}
-            </p>
             <h1 className="animate-fade-rise text-4xl font-bold leading-[1.02] tracking-tighter sm:text-7xl">
               {profile.name}
               <span className="text-gradient mt-2 block pb-1">{profile.title}</span>
             </h1>
             <p className="animate-fade-rise-delay mt-6 max-w-2xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
-            <p className="animate-fade-rise-delay mt-4 max-w-2xl text-base leading-relaxed text-muted">{profile.shortSummary}</p>
             <div className="animate-fade-rise-delay-2 mt-8 flex flex-wrap gap-3">
               <Link href="/projects" className="btn-primary">
                 View Projects
@@ -43,7 +35,7 @@ export default function HomePage() {
               {[
                 { v: profile.education.gpa, l: "GPA" },
                 { v: "2 yrs", l: "Industry experience" },
-                { v: "6", l: "Engineering projects" },
+                { v: "8", l: "Engineering projects" },
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
               ].map((s) => (
                 <div key={s.l} className="border-l-2 border-accent/30 pl-3">
@@ -156,9 +148,9 @@ export default function HomePage() {
           <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 h-4 w-4 border-r-2 border-t-2 border-accent/40" />
           <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 h-4 w-4 border-b-2 border-l-2 border-accent/40" />
           <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 border-b-2 border-r-2 border-accent/40" />
-          <h2 className="section-title">Let&apos;s build something well-engineered.</h2>
+          <h2 className="section-title">Contact</h2>
           <p className="mx-auto mt-3 max-w-xl text-muted">
-            I&apos;m looking for mechanical design, product development, manufacturing, and robotics opportunities. I&apos;d love to talk.
+            For mechanical design, product development, manufacturing, and robotics roles, reach me by email or through the contact form.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link href="/contact" className="btn-primary">Contact me</Link>

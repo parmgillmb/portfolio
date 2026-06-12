@@ -24,7 +24,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="container-page py-4 text-center text-xs text-muted">
-          © {new Date().getFullYear()} {profile.name}. Built with Next.js, TypeScript & Tailwind CSS.
+          © {new Date().getFullYear()} {profile.name}
         </div>
       </div>
     </footer>

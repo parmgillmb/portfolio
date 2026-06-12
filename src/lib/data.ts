@@ -34,7 +34,7 @@ export const profile = {
 export const versatilityPoints = [
   "Worked both sides of the design cycle at Manitoba Hydro: CAD modelling, drawing release, and FEA in design engineering (GDD), and inspection, non-conformance tracking, and process automation in quality engineering (CSD).",
   "Produced production hardware in two CAD environments: SolidWorks for academic and capstone work, and Autodesk Inventor for issued Manitoba Hydro fabrication and installation drawings.",
-  "Delivered across four engineering domains in coursework: robotic inspection and automation, renewable energy systems, mechatronic controls, and biomaterials characterization.",
+  "Delivered coursework across robotic inspection and automation, renewable energy systems, mechatronic controls, biomaterials characterization, CFD, structural FEA, and machine design.",
   "Moved between design and field: released drawings, then supported installation and commissioning, resolving design-to-field discrepancies on site.",
   "Combined mechanical work with software and automation: a CAD-driven robot inspection workflow, a Python navigation controller, and AI document automation in Power Automate.",
 ];
@@ -710,6 +710,191 @@ export const projects: Project[] = [
       { src: "/projects/rover/motor-mount-stress.png", caption: "Motor mount FEA stress." },
       { src: "/projects/rover/rocker-stress.png", caption: "Rocker arm FEA stress." },
     ],
+  },
+
+  {
+    slug: "cantilever-support-structure",
+    kind: "case",
+    title: "Lightweight Cantilever Support Structure",
+    subtitle:
+      "A welded A36 I-beam frame optimized to carry a 1000 N offset load at 2.96 kg, verified for fatigue, buckling, weld strength, and anchorage.",
+    course: "MECH 3652, Machine Design",
+    type: "Machine Design",
+    categories: ["Machine Design", "Structural Analysis & FEA", "Design & FEA"],
+    team: "Team of 5 (Group 4)",
+    year: "2025",
+    featured: false,
+    cover: "/projects/support-structure/ibeam-stress.png",
+    summary:
+      "A floor-mounted steel structure carrying a 1000 N horizontal load applied 500 mm from the floor without touching the adjacent wall. Five concepts were screened in a weighted matrix, then the selected frame was optimized through a cross-section study, topology study, and a seven-step mesh convergence to 3.06 million elements. The final four-member I-beam design weighs 2.964 kg with 77.6 MPa peak stress, 3.80 mm deflection, and FOS 3.22, with welds, anchor bolts, Euler buckling, and Marin-Goodman fatigue all verified for 10,000 cycles at 99 percent reliability.",
+    tech: ["SolidWorks FEA", "Topology Optimization", "Mesh Convergence", "ASTM A36 Steel", "Weld Sizing (AWS)", "Anchor Bolt Design (F1554)", "Euler Buckling", "Marin / Goodman Fatigue"],
+    metrics: [
+      { label: "Final weight", value: "2.964 kg" },
+      { label: "Peak stress", value: "77.6 MPa" },
+      { label: "Max deflection", value: "3.80 mm" },
+      { label: "Factor of safety", value: "3.22 (req. 2.0)" },
+      { label: "Predicted fatigue life", value: "6.2M cycles (req. 10k)" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: [
+          "The structure must resist a 1000 N horizontal load applied 500 mm above the floor and 500 mm out from a wall it is prohibited from touching, fixed only to the top surface of the floor. The design is limited to ASTM A36 steel and must hold a minimum factor of safety of 2.0 with 99 percent reliability over 10,000 load cycles.",
+          "The load path puts the frame in combined bending, shear, and axial action with buckling potential, so the central tradeoff is strength and rigidity against mass. The objective was the lightest structure that still meets every failure-mode check.",
+        ],
+        images: [
+          { src: "/projects/support-structure/member-diagram.png", caption: "Member diagram of the optimized frame: vertical AB, diagonal BC, horizontal BD, overhang DE." },
+        ],
+      },
+      {
+        heading: "Concept Selection",
+        body: [
+          "Each of the five team members modelled and FEA-tested an independent concept. My concept was a three-beam inverted-V frame: 59.8 MPa, 2.11 mm, 1.67 kg, FOS 4.18, the lightest and safest of the five, but its 3D weld geometry scored poorly on manufacturability.",
+          "A weighted decision matrix (deflection 30%, manufacturability 30%, mass 20%, FOS 20%) selected a three-member planar frame at 7.8 of 10. It scored a 10 on manufacturability: every member lies in one plane, so it can be cut and welded from standard sections with simple fixturing.",
+        ],
+        images: [
+          { src: "/projects/support-structure/concept1-stress.png", caption: "My concept, an inverted-V frame: lightest and highest FOS, penalized on weld complexity." },
+          { src: "/projects/support-structure/initial-model.png", caption: "Selected concept as initially modelled with a hollow square section." },
+        ],
+      },
+      {
+        heading: "Cross-Section Optimization",
+        body: [
+          "Three cross-sections were compared at near-constant structure weight so stiffness, not added material, decided the result. The hollow square baseline gave 81.8 MPa and 5.45 mm at 2.984 kg. A hollow circle was worse on both counts (96.1 MPa, 7.47 mm). The I-beam won decisively: 77.6 MPa, 3.80 mm, FOS 3.22 at 2.964 kg.",
+          "Two I-beam profiles were sized: a 25.2 mm deep section with 20 x 2.5 mm flanges and 5 mm web for the diagonal, and a 22.45 mm deep section with 20 x 3 mm flanges for the remaining members.",
+        ],
+        images: [
+          { src: "/projects/support-structure/ibeam-section.png", caption: "Final I-beam cross-section." },
+          { src: "/projects/support-structure/ibeam-stress.png", caption: "Von Mises stress on the I-beam frame, 77.6 MPa peak." },
+          { src: "/projects/support-structure/ibeam-deflection.png", caption: "Deflection plot, 3.80 mm maximum at the load point." },
+        ],
+      },
+      {
+        heading: "Topology and Mesh Verification",
+        body: [
+          "I ran the topology study and the mesh convergence. The topology optimization, constrained to hold FOS 2.0 at minimum mass, proposed web and flange cutouts that were rejected as impractical to manufacture; the fact that it removed little else confirmed the frame was already near-optimal.",
+          "The convergence study refined the global mesh from 5 mm to 1 mm (40,939 to 3,056,413 elements), keeping at least three elements across the 5 mm webs and probing 1 mm away from the singular corner. Stress converged within 5 percent over three consecutive refinements at 126.7 MPa, the conservative value carried into the fatigue calculations.",
+        ],
+        images: [
+          { src: "/projects/support-structure/topology.png", caption: "Topology study: proposed mass removal along the webs, rejected for manufacturability." },
+          { src: "/projects/support-structure/convergence-plot.png", caption: "Mesh convergence, flattening over the final three refinements." },
+          { src: "/projects/support-structure/stress-location.png", caption: "Converged stress location at the inner frame corner, 1 mm mesh." },
+        ],
+      },
+      {
+        heading: "Fixtures, Buckling, and Fatigue",
+        body: [
+          "Hand calculations closed every remaining failure mode. Fillet welds were sized per AWS minimum leg for 5 mm material with E60xx electrodes; weld shear works out to under 1 MPa against a 124 MPa allowable (static FOS above 130, fatigue FOS above 70 using the 2.7 end-of-weld concentration factor with shear Goodman).",
+          "The frame anchors through welded A36 base plates and four 0.50 in F1554 Grade 36 concrete anchor bolts, each loaded below 0.7 MPa against a 36.6 kN tensile capacity. An Euler check on the compressed horizontal member gave a 24.3 kN critical load against 0.77 kN applied.",
+          "Member fatigue used the Marin equation (surface, size, load, and 99 percent reliability factors) for an endurance limit near 104 MPa, then the Goodman criterion on the converged FEA stress. The 10,000-cycle fatigue strength is 237.9 MPa against the 126.7 MPa applied, and the predicted life is 6.2 million cycles. A SolidWorks fatigue study on the converged model showed no damage at 10,000 cycles.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        body: [
+          "The recommended design is a four-member welded I-beam frame at 2.964 kg that exceeds every requirement: FOS 3.22 against the required 2.0, deflection held to 3.80 mm, welds and anchorage with large margins, no buckling risk, and fatigue life three orders of magnitude past the requirement.",
+          "The discipline of the project was closing the loop between methods: FEA results were only trusted after convergence, analytical checks used the converged values, and the topology study validated rather than redrew the geometry.",
+        ],
+      },
+    ],
+    gallery: [
+      { src: "/projects/support-structure/square-section.png", caption: "Baseline hollow square section before optimization." },
+    ],
+  },
+
+  {
+    slug: "tractor-speed-reducer",
+    kind: "case",
+    title: "4:1 Tractor Speed Reducer",
+    subtitle:
+      "Chain, gear, and belt drives designed in full for a 60 hp tractor; the selected gear train and its output shaft sized for fatigue with bearings, keys, and retaining rings.",
+    course: "MECH 3652, Machine Design",
+    type: "Machine Design",
+    categories: ["Machine Design", "Design & FEA"],
+    team: "Team of 5 (Group 1)",
+    year: "2025",
+    featured: false,
+    cover: "/projects/speed-reducer/drive-train.png",
+    summary:
+      "A 4:1 speed reducer carrying 60 hp from a diesel tractor engine at 640 RPM to a 160 RPM output at 2670 N·m. Complete chain, gear, and belt drives were designed and compared on transmission efficiency, contamination resistance, and packaging; the gear train won with two stacked 2:1 spur stages in AISI 4140, sized by AGMA bending and contact methods. The 42 in output shaft was designed end to end with Marin fatigue at four critical locations, iterating material from 1020 CR to 1050 CR steel to hold FOS above 2, and verified by FEA converged at 31.85 ksi.",
+    tech: ["AGMA Gear Design", "Lewis Bending", "Shaft Fatigue (Marin)", "Stress Concentrations (Kf, Kfs)", "AISI 4140 / 1050 CR Steel", "Bearing Selection", "SolidWorks FEA", "Chain & Belt Design"],
+    metrics: [
+      { label: "Reduction", value: "4:1 (two 2:1 stages)" },
+      { label: "Power", value: "60 hp" },
+      { label: "Output torque", value: "2670 N·m" },
+      { label: "Shaft FOS", value: "2.17 min" },
+      { label: "Shaft FEA stress", value: "31.85 ksi converged" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: [
+          "The brief: design a speed reducer between 1.5:1 and 10:1 for 1 to 75 hp, with complete designs for a chain drive, gear drive, and belt drive, select one on engineering criteria, and fully design one of its shafts with bearings and retaining rings.",
+          "The chosen application is a tractor wheel drive: 60 hp in at 640 RPM, 160 RPM out, torque rising from 667.6 N·m at the input to 2670.3 N·m at the output. The drive operates outdoors in dirt, at low speed and high torque, with packaging on the tractor frame at a premium.",
+        ],
+      },
+      {
+        heading: "Drive Trade Study",
+        body: [
+          "All three drives were designed, not just compared on paper. The chain design used No. 100/120 single-strand roller chain with four sprockets and 15 in centers (about 44 in end to end); the belt design used two 2:1 V-belt stages with 9 and 18 in sheaves (43.5 in end to end, and a single-stage option would have needed a 36 in sheave); the gear design used four spur gears, two at 10 in and two at 20 in diameter (50 in tip to tip).",
+          "Selection weighed transmission efficiency, resistance to dust and debris, and installed size. Chain and gears beat the belt on efficiency and contamination; the gear train then won overall because it needs no tensioning or wrap-angle allowance, transmits torque tooth to tooth with no elongation or slip, and can be fully enclosed in a gearbox, which suits a machine that lives in dirt. Its slightly longer package was accepted as the cost of that robustness.",
+        ],
+        images: [
+          { src: "/projects/speed-reducer/drive-train.png", caption: "Selected gear train: input shaft left, two stacked 2:1 stages to the output." },
+          { src: "/projects/speed-reducer/chain-alternative.jpg", caption: "Chain alternative with pitch diameters and wrap angles." },
+          { src: "/projects/speed-reducer/belt-alternative.png", caption: "Belt alternative, two 2:1 V-belt stages." },
+        ],
+      },
+      {
+        heading: "Gear Design",
+        body: [
+          "Each 2:1 stage pairs a 15-tooth, 10 in pitch-diameter pinion with a 30-tooth, 20 in gear, both 2 in face width at a 20 degree pressure angle in AISI 4140 Grade 1 steel (Sy 93 ksi, 197 HB). Sizing followed the AGMA method: Lewis form factor, dynamic factor Kv, geometry factor J, stress-cycle factors YN and ZN at 10^7 cycles, and through-hardened bending and contact strengths.",
+          "Tooth profiles were generated as DXF involutes and rebuilt in SolidWorks. Each gear carries a 1-9/16 in bore with a 3/8 x 1/2 in keyseat for torque transmission.",
+        ],
+        images: [
+          { src: "/projects/speed-reducer/pinion-gear.png", caption: "15-tooth pinion, 10 in pitch diameter, 2 in face." },
+          { src: "/projects/speed-reducer/driven-gear.png", caption: "30-tooth driven gear, 20 in pitch diameter." },
+          { src: "/projects/speed-reducer/gear-dxf.png", caption: "Involute tooth profile generated as DXF for the CAD model." },
+        ],
+      },
+      {
+        heading: "Output Shaft Design",
+        body: [
+          "The 42 in output shaft carries the final gear and drives both wheel hubs. Diameters at four critical locations (gear-seat shoulder, keyway edge, retaining-ring groove, bearing shoulder) were found iteratively: conservative first-pass stress concentrations from standard tables, a nominal diameter, then refined Kf and Kfs from notch sensitivity and the actual D/d and r/d ratios.",
+          "The first pass in 1020 CR steel held the shoulders (FOS 2.13) but failed the keyway at 1.63, so the material was stepped up to 1050 CR (Sy 580 MPa), bringing the keyway to 2.17. The retaining-ring groove initially screened at 1.61 using the worst-case Kt of 5.0; with measured groove geometry (0.068 x 0.047 in, 0.010 in radius) the true factors gave 2.61. The bearing seat was set at 1.1810 in to match a standard NTN 6406ZZ double-shielded ball bearing (8,800 RPM rating against 160 required), and keys were crush-checked to length: 0.472 in at the gear, 1.106 in at the wheel ends.",
+        ],
+        images: [
+          { src: "/projects/speed-reducer/shaft-layout.png", caption: "Initial shaft layout: gear seat (green) and bearing seats (orange)." },
+          { src: "/projects/speed-reducer/shaft-full.png", caption: "Final assembled shaft." },
+          { src: "/projects/speed-reducer/shaft-section.png", caption: "Section view through the gear, bearings, keys, and retaining rings." },
+          { src: "/projects/speed-reducer/shaft-closeup.png", caption: "Gear and bearing interface detail." },
+        ],
+      },
+      {
+        heading: "FEA Verification",
+        body: [
+          "Each gear stage was checked under its stage torque with the driven bore fixed, representing a jammed wheel as the worst case. Stage one peaked at 82.9 MPa and stage two at 133.7 MPa, both at the tooth contact patch with a secondary concentration at the keyseat corner, an order of magnitude below the 4140 yield and consistent with the AGMA sizing.",
+          "The shaft was meshed from 0.25 in down to 0.05 in elements (90k to 3.5M), converging within 1 percent over three refinements at 31.85 ksi near the gear edge, with 0.006 in total deflection under bearing supports and the full 1969.5 lb-ft output torque.",
+        ],
+        images: [
+          { src: "/projects/speed-reducer/stage1-stress.png", caption: "Stage one stress, 82.9 MPa at the contact patch." },
+          { src: "/projects/speed-reducer/stage2-stress.png", caption: "Stage two stress under doubled torque, 133.7 MPa." },
+          { src: "/projects/speed-reducer/shaft-fea-stress.png", caption: "Shaft stress near the gear seat, converged at 31.85 ksi." },
+          { src: "/projects/speed-reducer/shaft-convergence.png", caption: "Shaft mesh convergence over seven refinements." },
+        ],
+      },
+      {
+        heading: "Outcome",
+        body: [
+          "The gear-driven reducer meets the 4:1 ratio at 60 hp with every component sized by hand calculation and confirmed by FEA: gears within AGMA bending and contact limits, and a shaft holding FOS above 2 at all four critical locations after one material iteration.",
+          "The shaft design was the core lesson: real factors of safety live in the details, keyways, ring grooves, and shoulder fillets, and the first material that survives the nominal sections is not necessarily the one that survives its own features.",
+        ],
+        images: [
+          { src: "/projects/speed-reducer/shaft-fea-deflection.png", caption: "Shaft deflection under full output torque, 0.006 in total." },
+        ],
+      },
+    ],
+    gallery: [],
   },
 
   // ---------------------------------------------------------------------------

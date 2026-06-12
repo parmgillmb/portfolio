@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   profile,
   experience,
   skillGroups,
   certifications,
   languages,
-  projects,
 } from "@/lib/data";
 import { PrintButton } from "@/components/PrintButton";
 import { SectionIcon } from "@/components/SectionIcon";
@@ -25,9 +25,10 @@ export default function ResumePage() {
             <SectionIcon name="document" size={17} />
             Resume
           </p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight">Interactive Resume</h1>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight">Resume</h1>
           <p className="mt-2 max-w-xl text-sm text-muted">
-            Download the PDF, or use the print button to save a copy. Everything below mirrors my full resume.
+            Download the PDF or print a copy. Project work is documented in full, with drawings and analysis, under{" "}
+            <Link href="/projects" className="font-semibold text-accent hover:underline">Projects</Link>.
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-3">
@@ -92,23 +93,6 @@ export default function ResumePage() {
                 </ul>
               </div>
             ))}
-          </div>
-        </Section>
-
-        {/* Projects */}
-        <Section title="Selected Projects">
-          <div className="space-y-3">
-            {projects
-              .filter((p) => p.kind === "case")
-              .map((p) => (
-                <div key={p.slug}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-1">
-                    <h3 className="font-semibold">{p.title}</h3>
-                    <span className="text-sm text-muted">{p.course}</span>
-                  </div>
-                  <p className="text-sm leading-relaxed text-muted">{p.summary}</p>
-                </div>
-              ))}
           </div>
         </Section>
 
