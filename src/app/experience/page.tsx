@@ -14,8 +14,8 @@ export default function ExperiencePage() {
       <PageHeader
         icon="hardhat"
         eyebrow="Experience"
-        title="Two years of hands-on engineering."
-        description="Design and quality engineering internships at Manitoba Hydro, where I moved from CAD and FEA to field commissioning, and from QC inspection to building AI-powered automation."
+        title="Two internships at Manitoba Hydro."
+        description="Design engineering in the Generation Design Department and quality engineering in Construction Services: CAD and FEA through drawing release and field commissioning, QC inspection through document automation."
       />
 
       <div className="container-page mt-12">
@@ -67,7 +67,7 @@ export default function ExperiencePage() {
 
                 <p className="mt-4 text-sm leading-relaxed text-muted">{e.summary}</p>
 
-                <h3 className="mt-5 text-xs font-bold uppercase tracking-wide text-muted">Responsibilities &amp; Achievements</h3>
+                <h3 className="mt-5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">Responsibilities &amp; Achievements</h3>
                 <ul className="mt-3 space-y-2.5">
                   {e.highlights.map((h) => (
                     <li key={h} className="flex gap-3 text-sm leading-relaxed text-muted">
@@ -79,7 +79,7 @@ export default function ExperiencePage() {
                   ))}
                 </ul>
 
-                <h3 className="mt-5 text-xs font-bold uppercase tracking-wide text-muted">Technologies</h3>
+                <h3 className="mt-5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">Technologies</h3>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {e.tech.map((t) => (
                     <span key={t} className="chip">{t}</span>

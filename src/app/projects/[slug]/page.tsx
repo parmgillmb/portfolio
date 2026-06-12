@@ -72,7 +72,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </svg>
             All projects
           </Link>
-          <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-accent">{project.source ?? project.course}</p>
+          <p className="mt-6 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">{project.source ?? project.course}</p>
           <h1 className="mt-2 max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted">{project.subtitle}</p>
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
@@ -121,7 +121,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <div className={`grid grid-cols-2 gap-4 ${isDrawing ? "sm:grid-cols-3 lg:grid-cols-5" : "sm:grid-cols-3 lg:grid-cols-5"}`}>
           {project.metrics.map((m) => (
             <div key={m.label} className="card p-5">
-              <p className="text-lg font-bold tracking-tight text-accent sm:text-xl">{m.value}</p>
+              <p className="font-mono text-lg font-semibold tracking-tight text-accent sm:text-xl">{m.value}</p>
               <p className="mt-1 text-xs leading-snug text-muted">{m.label}</p>
             </div>
           ))}
@@ -131,7 +131,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       {/* Overview */}
       <section className="container-page mt-12">
         <div className="card border-l-4 border-l-accent p-6 sm:p-8">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Overview</h2>
+          <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">Overview</h2>
           <p className="mt-3 text-base leading-relaxed">{project.summary}</p>
         </div>
       </section>
@@ -245,7 +245,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           {project.supplementarySheets && project.supplementarySheets.length > 0 && (
             <>
               <Reveal>
-                <h3 className="mt-12 text-xs font-bold uppercase tracking-wide text-muted">Assembly &amp; Part Sheets</h3>
+                <h3 className="mt-12 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">Assembly &amp; Part Sheets</h3>
               </Reveal>
               <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {project.supplementarySheets.map((sheet, i) => (

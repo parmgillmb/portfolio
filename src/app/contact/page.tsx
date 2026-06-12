@@ -14,8 +14,8 @@ export default function ContactPage() {
       <PageHeader
         icon="mail"
         eyebrow="Contact"
-        title="Let's talk."
-        description={profile.availability + ". Send a message and I'll get back to you quickly."}
+        title="Email, LinkedIn, or the form below."
+        description={profile.availability + "."}
       />
 
       <div className="container-page mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </span>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">References</p>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">References</p>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-muted">
               Available upon request, including supervisors and managers from my Manitoba Hydro internships.
@@ -89,7 +89,7 @@ function ContactRow({
         </svg>
       </span>
       <div className="min-w-0">
-        <p className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</p>
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{label}</p>
         <p className="truncate text-sm font-medium">{value}</p>
       </div>
     </div>

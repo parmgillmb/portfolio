@@ -87,13 +87,17 @@ Dark theme:
 Accent is teal throughout. The OG share card uses navy `#0a0e18`→`#080b12`
 background with teal `#2dd4bf`.
 
-### Typography
-- **Body / sans:** Inter (`--font-sans`, `next/font/google`).
-- **Display / headings:** Space Grotesk (`--font-display`). Applied to `h1,h2,h3`
-  with tight letter-spacing (`-0.02em`) for a "cinematic" engineering look.
-- **Mono:** `ui-monospace`/JetBrains-style (`--font-mono`), used for drawing
-  numbers, dates, title-block fields, and technical labels.
-- `.text-gradient` puts a teal→fg gradient on the hero title.
+### Typography (IBM Plex system, 2026-06-12)
+- **All primary type:** IBM Plex Sans (`--font-sans`, next/font, weights
+  400–700). Headings are Plex Sans with `-0.015em` tracking; `font-display`
+  maps to the same family.
+- **Technical labels:** IBM Plex Mono (`--font-mono`, weights 400–600) for nav
+  links, section eyebrows, card label headings, chips/tags, hero stats, metric
+  values, dates, drawing numbers, and title-block fields. Label style:
+  `font-mono text-xs (or [11px]) font-medium/semibold uppercase
+  tracking-[0.14–0.18em]`.
+- No gradient text (hero title is solid accent). No display font separate from
+  body, by design: the system reads like engineering documentation.
 
 ### Layout decisions
 - Centered content column, `max-w-content` (1180px), `.container-page` wrapper.
@@ -106,11 +110,15 @@ background with teal `#2dd4bf`.
 
 ### UI component patterns
 - `.card` — rounded bordered surface; the base container for most content.
-- `.chip` — pill tag for tech/skills, hover raises accent border.
-- `.btn-primary` / `.btn-outline` — buttons; primary lifts + accent shadow on
-  hover, compresses on active.
-- `.liquid-glass` — glassmorphism (blur + saturation + gradient edge highlight),
-  theme-aware; used by the floating navbar and the hero availability badge.
+- `.chip` — square-cornered mono tag (`rounded`, IBM Plex Mono 11px) for
+  tech/skills; reads like a spec label.
+- `.btn-primary` / `.btn-outline` — `rounded-md` buttons, color-transition only
+  (no lift/shadow/pill).
+- Navbar — flat technical header: solid `bg-bg/95` + hairline bottom border,
+  square accent "PG" stamp, mono uppercase nav labels with accent underline on
+  the active route. (The previous glass pill nav and all `.liquid-glass` CSS
+  were removed 2026-06-12; gradient blobs in BackgroundDecor/HeroBlueprint/CTA
+  were removed at the same time.)
 - `.tilt-wrap`/`.tilt-inner` — pointer-tracked 3D tilt (desktop mouse only).
 - `.draw-line` — stroke-dash "draw-in" animation for SVG line art (flange
   schematic, hydro generator art, exploded assembly).
@@ -734,6 +742,16 @@ How website copy must be written (carried from the owner's standing instructions
 Newest first. Commits are on `main` (`parmgillmb/portfolio`). Append an entry for
 every significant change.
 
+- **2026-06-12 (later)** Engineering-document design pass: typography replaced
+  with IBM Plex Sans (all primary) + IBM Plex Mono (nav, eyebrows, labels,
+  chips, stats, metric values); glass pill navbar replaced with a flat
+  title-bar-style header; removed all `.liquid-glass` CSS, `.text-gradient`
+  hero, gradient blur blobs (BackgroundDecor, HeroBlueprint, CTA card); buttons
+  and chips squared from pills to `rounded`/`rounded-md`; copy de-cliched
+  (Skills "Skills, grouped by discipline.", Experience "Two internships at
+  Manitoba Hydro.", Contact "Email, LinkedIn, or the form below.", home skills
+  heading "CAD, Analysis & Manufacturing"). Engineering line work (grids,
+  schematics, dividers, callouts) retained as the visual identity.
 - **2026-06-12** Added two MECH 3652 Machine Design case studies (Lightweight
   Cantilever Support Structure; 4:1 Tractor Speed Reducer) with 25 curated
   figures and a new "Machine Design" filter category (now 12 projects, 8 case

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "SFMono-Regular", monospace;
+  /* Font variables are injected by next/font (IBM Plex Sans / IBM Plex Mono)
+     on the <html> element; see layout.tsx. */
 
   /* Light theme */
   --bg: 248 250 252;
@@ -45,12 +45,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Cinematic display typography for headings */
+/* Heading typography: IBM Plex Sans, tightened like document titles */
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), var(--font-sans);
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.015em;
 }
 
 /* Prevent theme flash transition jank but keep colour transitions smooth */
@@ -84,16 +84,16 @@ body,
     @apply rounded-2xl border border-border bg-surface;
   }
   .chip {
-    @apply inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1 text-xs font-medium text-muted transition-colors hover:border-accent/40 hover:text-fg;
+    @apply inline-flex items-center rounded border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] font-medium leading-none text-muted transition-colors hover:border-accent/40 hover:text-fg;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors duration-150;
   }
   .btn-primary {
-    @apply btn bg-accent text-accent-fg hover:-translate-y-px hover:opacity-90 hover:shadow-lg hover:shadow-accent/25;
+    @apply btn bg-accent text-accent-fg hover:opacity-90;
   }
   .btn-outline {
-    @apply btn border border-border bg-transparent text-fg hover:border-accent/40 hover:bg-surface-2;
+    @apply btn border border-border bg-transparent text-fg hover:border-accent/50 hover:bg-surface-2;
   }
   .section-title {
     @apply text-2xl font-bold tracking-tight sm:text-3xl;
@@ -115,45 +115,6 @@ body,
   }
 }
 
-/* Liquid glass surface (theme-aware glassmorphism) */
-.liquid-glass {
-  background: rgb(var(--surface) / 0.55);
-  backdrop-filter: blur(14px) saturate(1.5);
-  -webkit-backdrop-filter: blur(14px) saturate(1.5);
-  border: none;
-  box-shadow:
-    inset 0 1px 1px rgb(255 255 255 / 0.1),
-    0 8px 32px rgb(0 0 0 / 0.08);
-  position: relative;
-  overflow: hidden;
-}
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(
-    180deg,
-    rgb(var(--fg) / 0.18) 0%,
-    rgb(var(--fg) / 0.06) 20%,
-    rgb(var(--fg) / 0) 40%,
-    rgb(var(--fg) / 0) 60%,
-    rgb(var(--fg) / 0.06) 80%,
-    rgb(var(--fg) / 0.18) 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-.dark .liquid-glass {
-  background: rgb(var(--surface) / 0.45);
-  box-shadow:
-    inset 0 1px 1px rgb(255 255 255 / 0.08),
-    0 8px 32px rgb(0 0 0 / 0.3);
-}
-
 /* Faint brushed-metal texture for drawing surfaces */
 .brushed {
   background-image: repeating-linear-gradient(
@@ -164,15 +125,7 @@ body,
   );
 }
 
-/* Gradient headline text */
-.text-gradient {
-  background: linear-gradient(100deg, rgb(var(--accent)) 0%, rgb(var(--accent) / 0.65) 55%, rgb(var(--fg) / 0.85) 110%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Cinematic entrance */
+/* Entrance animation */
 @keyframes fade-rise {
   from {
     opacity: 0;

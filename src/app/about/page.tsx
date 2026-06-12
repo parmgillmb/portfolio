@@ -70,7 +70,7 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal className="card p-6" delay={60}>
-            <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Based in</h2>
+            <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">Based in</h2>
             <p className="mt-3 text-sm">{profile.location}</p>
             <a href={`mailto:${profile.email}`} className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">
               {profile.email}

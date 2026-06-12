@@ -49,8 +49,6 @@ export function HeroBlueprint() {
         <HeroSchematic className="h-[360px] w-[360px]" />
       </div>
 
-      {/* Soft accent wash */}
-      <div className="absolute -right-[10%] -top-[15%] h-[480px] w-[480px] rounded-full bg-accent/[0.07] blur-3xl" />
     </div>
   );
 }

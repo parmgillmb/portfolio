@@ -21,8 +21,8 @@ export default function ResumePage() {
       {/* Action bar */}
       <div className="no-print mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-            <SectionIcon name="document" size={17} />
+          <p className="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+            <SectionIcon name="document" size={16} />
             Resume
           </p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight">Resume</h1>
@@ -130,7 +130,7 @@ export default function ResumePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-6 border-b border-border pb-6 last:border-0">
-      <h2 className="mb-3 text-sm font-bold uppercase tracking-widest text-accent">{title}</h2>
+      <h2 className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">{title}</h2>
       {children}
     </section>
   );

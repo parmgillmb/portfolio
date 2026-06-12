@@ -14,8 +14,8 @@ export function PageHeader({
   return (
     <header className="container-page pt-12 sm:pt-16">
       {eyebrow && (
-        <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-          {icon && <SectionIcon name={icon} size={17} />}
+        <p className="mb-3 flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+          {icon && <SectionIcon name={icon} size={16} />}
           {eyebrow}
         </p>
       )}

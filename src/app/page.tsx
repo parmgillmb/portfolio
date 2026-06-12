@@ -17,7 +17,7 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <h1 className="animate-fade-rise text-4xl font-bold leading-[1.02] tracking-tighter sm:text-7xl">
               {profile.name}
-              <span className="text-gradient mt-2 block pb-1">{profile.title}</span>
+              <span className="mt-2 block pb-1 text-accent">{profile.title}</span>
             </h1>
             <p className="animate-fade-rise-delay mt-6 max-w-2xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
             <div className="animate-fade-rise-delay-2 mt-8 flex flex-wrap gap-3">
@@ -39,7 +39,7 @@ export default function HomePage() {
                 { v: "B.Sc.", l: "Mech. Eng. (Co-op)" },
               ].map((s) => (
                 <div key={s.l} className="border-l-2 border-accent/30 pl-3">
-                  <dt className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                  <dt className="font-mono text-2xl font-semibold tracking-tight sm:text-3xl">
                     <CountUp value={s.v} />
                   </dt>
                   <dd className="mt-1 text-sm text-muted">{s.l}</dd>
@@ -56,9 +56,9 @@ export default function HomePage() {
       <section className="container-page mt-12">
         <Reveal className="flex items-end justify-between gap-4">
           <div>
-            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-              <SectionIcon name="compass" size={17} />
-              Selected Work
+            <p className="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+              <SectionIcon name="compass" size={16} />
+              Projects
             </p>
             <h2 className="section-title mt-2">Featured Projects</h2>
           </div>
@@ -85,9 +85,9 @@ export default function HomePage() {
       {/* Experience snapshot */}
       <section className="container-page mt-12">
         <Reveal>
-          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-            <SectionIcon name="hardhat" size={17} />
-            Where I&apos;ve Worked
+          <p className="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+            <SectionIcon name="hardhat" size={16} />
+            Experience
           </p>
           <h2 className="section-title mt-2">Industry Experience</h2>
         </Reveal>
@@ -117,11 +117,11 @@ export default function HomePage() {
       {/* Skills strip */}
       <section className="container-page mt-12">
         <Reveal>
-          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent">
-            <SectionIcon name="wrench" size={17} />
-            Capabilities
+          <p className="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+            <SectionIcon name="wrench" size={16} />
+            Skills
           </p>
-          <h2 className="section-title mt-2">Core Engineering Toolkit</h2>
+          <h2 className="section-title mt-2">CAD, Analysis & Manufacturing</h2>
         </Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {skillGroups.slice(0, 8).map((g, i) => (
@@ -143,7 +143,6 @@ export default function HomePage() {
       {/* CTA */}
       <section className="container-page mt-12">
         <Reveal className="card relative overflow-hidden p-8 sm:p-12 text-center">
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/10 blur-2xl" />
           <span aria-hidden="true" className="pointer-events-none absolute left-3 top-3 h-4 w-4 border-l-2 border-t-2 border-accent/40" />
           <span aria-hidden="true" className="pointer-events-none absolute right-3 top-3 h-4 w-4 border-r-2 border-t-2 border-accent/40" />
           <span aria-hidden="true" className="pointer-events-none absolute bottom-3 left-3 h-4 w-4 border-b-2 border-l-2 border-accent/40" />

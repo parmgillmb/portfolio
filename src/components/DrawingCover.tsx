@@ -26,7 +26,7 @@ export function DrawingCover({ project, compact = false }: { project: Project; c
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M3 3h18v18H3zM3 9h18M9 21V9" />
           </svg>
-          <span className="text-xs font-semibold uppercase tracking-widest">Engineering Drawing</span>
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em]">Engineering Drawing</span>
         </div>
         <div>
           <p className={`font-bold leading-tight ${compact ? "text-base" : "text-lg"}`}>{project.title}</p>

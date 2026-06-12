@@ -16,8 +16,8 @@ export default function SkillsPage() {
       <PageHeader
         icon="wrench"
         eyebrow="Skills"
-        title="The toolkit behind the work."
-        description="Grouped by discipline. Every tool listed is backed by coursework, projects, or two years of industry use."
+        title="Skills, grouped by discipline."
+        description="Every tool listed is backed by coursework, a documented project, or two years of industry use."
       />
 
       <div className="container-page mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -43,7 +43,7 @@ export default function SkillsPage() {
 
       <div className="container-page mt-10 grid gap-6 sm:grid-cols-2">
         <Reveal className="card p-6">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Certifications</h2>
+          <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">Certifications</h2>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {certifications.map((c) => (
               <span key={c} className="chip">{c}</span>
@@ -51,7 +51,7 @@ export default function SkillsPage() {
           </div>
         </Reveal>
         <Reveal className="card p-6" delay={60}>
-          <h2 className="text-sm font-bold uppercase tracking-wide text-muted">Languages</h2>
+          <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted">Languages</h2>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {languages.map((l) => (
               <span key={l} className="chip">{l}</span>
