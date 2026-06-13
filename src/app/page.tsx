@@ -6,12 +6,14 @@ import { HeroBlueprint } from "@/components/HeroBlueprint";
 import { TechDivider } from "@/components/TechDivider";
 import { SectionIcon } from "@/components/SectionIcon";
 import { CountUp } from "@/components/CountUp";
+import { HeroScrub } from "@/components/HeroScrub";
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section data-hero className="relative overflow-hidden">
+        <HeroScrub />
         <HeroBlueprint />
         <div className="container-page pb-12 pt-16 sm:pt-24">
           <div className="max-w-3xl">

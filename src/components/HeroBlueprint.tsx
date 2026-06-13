@@ -42,7 +42,7 @@ export function HeroBlueprint() {
       ))}
 
       {/* Dimensioned flange schematic, right side */}
-      <div className="absolute -top-2 right-[2%] hidden text-accent/25 lg:block dark:text-accent/20">
+      <div data-hero-schematic className="absolute -top-2 right-[2%] hidden text-accent/25 lg:block dark:text-accent/20">
         <HeroSchematic />
       </div>
       <div className="absolute -right-16 -top-6 hidden text-accent/20 md:block lg:hidden">

@@ -10,6 +10,7 @@ import { DrawingCover } from "@/components/DrawingCover";
 import { ProjectCard } from "@/components/ProjectCard";
 import { DrawingSheetCard } from "@/components/DrawingSheetCard";
 import { HydroGeneratorArt } from "@/components/HydroGeneratorArt";
+import { ScrollDraw } from "@/components/ScrollDraw";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -38,6 +39,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
   return (
     <article>
+      <ScrollDraw />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 -z-10">
@@ -174,7 +176,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {String(si + 1).padStart(2, "0")}
               </span>
               <h2 className="section-title">{section.heading}</h2>
-              <span aria-hidden="true" className="hidden h-px flex-1 bg-gradient-to-r from-border to-transparent sm:block" />
+              <span data-rule aria-hidden="true" className="hidden h-px flex-1 bg-gradient-to-r from-border to-transparent sm:block" />
             </div>
             <div className="mt-5 space-y-4">
               {section.body.map((p, pi) => (

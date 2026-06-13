@@ -742,6 +742,17 @@ How website copy must be written (carried from the owner's standing instructions
 Newest first. Commits are on `main` (`parmgillmb/portfolio`). Append an entry for
 every significant change.
 
+- **2026-06-12 (later)** Added GSAP scroll behaviors (gsap dependency,
+  lazy-loaded only on pages that use them): `ScrollDraw` scrubs the project-page
+  section "dimension rules" (`[data-rule]`) from scaleX 0→1 as each section
+  scrolls in; `HeroScrub` scrubs a subtle rotation + lift on the home hero
+  flange schematic (desktop/lg only, no pin). Both no-op under reduced motion
+  and degrade gracefully. NOTE: a three.js interactive-model feature (gear
+  train, end-effector, shaft, bracket viewers via `ThreeViewer`/`lib/models.ts`)
+  was built and then fully removed at the owner's request before any commit;
+  three.js is NOT a dependency. A hard-pinned hero variant was also tried and
+  rejected as too gimmicky; the non-pinned scrub shipped instead.
+
 - **2026-06-12 (later)** Engineering-document design pass: typography replaced
   with IBM Plex Sans (all primary) + IBM Plex Mono (nav, eyebrows, labels,
   chips, stats, metric values); glass pill navbar replaced with a flat
